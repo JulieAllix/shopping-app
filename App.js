@@ -6,9 +6,20 @@ import {
   View, 
   SafeAreaView 
 } from 'react-native';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+
+import ProductsOverviewScreen from './screens/ProductsOverviewScreen';
+import productsReducer from './store/reducers/products';
+
+const rootReducer = combineReducers({
+  products: productsReducer,
+});
+ 
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -32,10 +43,12 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      {/*<StatusBar style="auto" />*/}
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <ProductsOverviewScreen />
+        {/*<StatusBar style="auto" />*/}
+      </SafeAreaView>
+    </Provider>
   );
 }
 
