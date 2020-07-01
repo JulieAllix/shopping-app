@@ -22,7 +22,7 @@ const ProductItem = props => {
     return (
         <View style={styles.shopItem}>
             <TouchableCmp 
-                //onPress={props.onSelectedItem}
+                onPress={props.onSelectedItem}
             >
                 <View>
                     <View style={{...styles.itemRow, ...styles.itemHeader}}>

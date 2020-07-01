@@ -13,9 +13,9 @@ const ProductsOverviewScreen = ({ navigation }) => {
     
     return ( 
         <ProductsList  
-                listData={availableProducts}
-                navigation={navigation} 
-            />
+            listData={availableProducts}
+            navigation={navigation} 
+        />
     );
 };
 

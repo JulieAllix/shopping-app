@@ -15,7 +15,6 @@ const ProductsList = props => {
                 description={itemData.item.description}
                 price={itemData.item.price}
                 imageUrl={itemData.item.imageUrl}
-                /*
                 onSelectedItem={
                     () => {
                         props.navigation.navigate(
@@ -24,7 +23,6 @@ const ProductsList = props => {
                         )
                     }
                 }
-                */
             />
         );
     };
