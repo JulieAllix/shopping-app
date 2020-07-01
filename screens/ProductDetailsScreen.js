@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
-    Text 
+    Text,
+    StyleSheet
 } from 'react-native';
 
 const ProductDetailsScreen = props => {

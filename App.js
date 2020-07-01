@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
-import ProductsOverviewScreen from './screens/ProductsOverviewScreen';
+import ShopNavigator from './navigation/ShopNavigator';
 import productsReducer from './store/reducers/products';
 
 const rootReducer = combineReducers({
@@ -45,7 +45,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
-        <ProductsOverviewScreen />
+        <ShopNavigator />
         {/*<StatusBar style="auto" />*/}
       </SafeAreaView>
     </Provider>
