@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-    FlatList, 
-    StyleSheet, 
-    Text 
-} from 'react-native';
 import { useSelector } from 'react-redux';
+import { 
+    View,
+    StyleSheet,
+    Text
+} from 'react-native';
 
 import ProductsList from '../components/ProductsList';
 
@@ -12,10 +12,10 @@ const ProductsOverviewScreen = ({ navigation }) => {
     const availableProducts = useSelector(state => state.products.availableProducts);
     
     return ( 
-        <ProductsList 
-            listData={availableProducts}
-            //navigation={navigation} 
-        />
+        <ProductsList  
+                listData={availableProducts}
+                navigation={navigation} 
+            />
     );
 };
 

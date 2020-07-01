@@ -44,10 +44,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
         <ShopNavigator />
-        {/*<StatusBar style="auto" />*/}
-      </SafeAreaView>
     </Provider>
   );
 }
@@ -60,3 +57,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+/*
+  return (
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <ShopNavigator />
+        </SafeAreaView>
+        </Provider>
+      );
+      */

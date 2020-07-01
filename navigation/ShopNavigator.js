@@ -15,8 +15,8 @@ const defaultStackNavOptions = {
         height: Platform.OS === 'android' ? 100 : 50,
     },
     headerTitleStyle: {
-        fontFamily: 'notable',
-        fontSize: 24,
+        fontFamily: 'noto-b',
+        fontSize: 20,
     },
     headerBackTitleStyle: {
         fontFamily: 'noto'
@@ -26,12 +26,11 @@ const defaultStackNavOptions = {
 
 const Products = ({navigation}) => {
     return (
-        <NavigationContainer
-            initialRouteName="Products Overview"
-            headerMode="screen"
-            screenOptions={defaultStackNavOptions}
-        >
-            <Stack.Navigator>
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName="Products Overview"
+                screenOptions={defaultStackNavOptions}
+            >
                 <Stack.Screen 
                     name="Products Overview" 
                     component={ProductsOverviewScreen} 
