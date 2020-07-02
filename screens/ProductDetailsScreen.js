@@ -4,10 +4,12 @@ import {
     Text,
     StyleSheet,
     ScrollView,
-    Image
+    Image,
+    View
 } from 'react-native';
 
 import MyButton from '../components/MyButton';
+import Colors from '../constants/Colors';
 
 const ProductDetailsScreen = ({ route, navigation }) => {
     const availableProducts = useSelector(state => state.products.availableProducts);
@@ -22,20 +24,41 @@ const ProductDetailsScreen = ({ route, navigation }) => {
     });
 
     return ( 
-        <ScrollView>
+        <ScrollView style={styles.screen}>
             <Image source={{uri: selectedProduct.imageUrl}} style={styles.image} />
-            <Text style={styles.price}>{selectedProduct.price}€</Text>
-            <Text style={styles.description}>{selectedProduct.description}</Text>
-            <MyButton>Add to cart</MyButton>
+            <View style={styles.infoContainer}>
+                <Text style={styles.price}>{selectedProduct.price}€</Text>
+                <Text style={styles.description}>{selectedProduct.description}</Text>
+                <MyButton>Add to cart</MyButton>
+            </View>
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        
+    },
     image: {
         width: '100%',
         height: 200
     },
+    infoContainer: {
+        height: '70%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 10,
+        padding: 15,
+    },
+    price: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: Colors.accentColor,
+    },
+    description: {
+        fontSize: 20,
+    }
 });
 
 export default ProductDetailsScreen;

@@ -7,7 +7,8 @@ export default {
     primaryColor: '#313638', // Onyx
     /*
     accentColor: '#3B1F2B', // Dark Purple
-    accentColor: '#F9A620', // Bright Yellow Crayola
-    */
     accentColor: '#F06543', // Orange Soda
+    
+    */
+   accentColor: '#F9A620', // Bright Yellow Crayola
 };
