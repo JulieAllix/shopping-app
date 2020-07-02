@@ -1,11 +1,6 @@
 //import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  SafeAreaView 
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -57,13 +52,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-/*
-  return (
-    <Provider store={store}>
-      <SafeAreaView style={styles.container}>
-        <ShopNavigator />
-        </SafeAreaView>
-        </Provider>
-      );
-      */

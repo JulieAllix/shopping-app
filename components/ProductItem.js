@@ -41,7 +41,11 @@ const ProductItem = props => {
                         <DefaultText>{props.price}€</DefaultText>
                     </View>
                     <View style={{...styles.itemRow, ...styles.itemButtons}}>
-                        <MyButton>Details</MyButton>
+                        <MyButton
+                            onPress={props.onClickOnDetails}
+                        >
+                            Details
+                        </MyButton>
                         <MyButton>Add to cart</MyButton>
                     </View>
                 </View>

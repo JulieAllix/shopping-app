@@ -23,6 +23,14 @@ const ProductsList = props => {
                         )
                     }
                 }
+                onClickOnDetails={
+                    () => {
+                        props.navigation.navigate(
+                            'ProductDetails', 
+                            {id: itemData.item.id}
+                        )
+                    }
+                }
             />
         );
     };

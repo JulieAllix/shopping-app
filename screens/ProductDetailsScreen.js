@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import MyButton from '../components/MyButton';
+import DefaultText from '../components/DefaultText';
 import Colors from '../constants/Colors';
 
 const ProductDetailsScreen = ({ route, navigation }) => {
@@ -28,7 +29,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
             <Image source={{uri: selectedProduct.imageUrl}} style={styles.image} />
             <View style={styles.infoContainer}>
                 <Text style={styles.price}>{selectedProduct.price}€</Text>
-                <Text style={styles.description}>{selectedProduct.description}</Text>
+                <DefaultText>{selectedProduct.description}</DefaultText>
                 <MyButton>Add to cart</MyButton>
             </View>
         </ScrollView>
@@ -37,8 +38,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
-        
+        flex: 1,   
     },
     image: {
         width: '100%',
@@ -56,9 +56,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: Colors.accentColor,
     },
-    description: {
-        fontSize: 20,
-    }
 });
 
 export default ProductDetailsScreen;
