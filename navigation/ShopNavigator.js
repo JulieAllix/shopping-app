@@ -34,6 +34,7 @@ const Products = ({navigation}) => {
                 <Stack.Screen 
                     name="Products Overview" 
                     component={ProductsOverviewScreen} 
+                    options={() => ({title: 'Shop'})}
                 />
                 <Stack.Screen 
                     name="Product Details" 
