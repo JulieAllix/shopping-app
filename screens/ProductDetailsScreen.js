@@ -30,7 +30,17 @@ const ProductDetailsScreen = ({ route, navigation }) => {
             <View style={styles.infoContainer}>
                 <Text style={styles.price}>{selectedProduct.price}€</Text>
                 <DefaultText>{selectedProduct.description}</DefaultText>
-                <MyButton>Add to cart</MyButton>
+                <MyButton
+                    onPress={
+                    () => {
+                        navigation.navigate(
+                            'Cart'
+                        )
+                    }
+                }
+                >
+                    Add to cart
+                </MyButton>
             </View>
         </ScrollView>
     );
