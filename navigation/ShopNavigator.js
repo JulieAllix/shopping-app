@@ -2,15 +2,21 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductsOverviewScreen from '../screens/ProductsOverviewScreen';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
 import CartScreen from '../screens/CartScreen';
+import OrdersScreen from '../screens/OrdersScreen';
+import EditUserProductsScreen from '../screens/EditUserProductsScreen';
+import UserProductsOverviewScreen from '../screens/UserProductsOverviewScreen';
+
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const defaultStackNavOptions = {
     headerStyle: {
@@ -27,48 +33,140 @@ const defaultStackNavOptions = {
     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
 };
 
-const Products = ({navigation}) => {
+const ShopNavigator = ({navigation}) => {
+    return (
+        <Stack.Navigator
+            initialRouteName="ProductsOverview"
+            screenOptions={defaultStackNavOptions}
+        >
+            <Stack.Screen 
+                name="ProductsOverview" 
+                component={ProductsOverviewScreen} 
+                options={() => ({
+                    title: 'The Plant Shop',
+                    headerRight: () => (
+                        <HeaderButtons
+                        HeaderButtonComponent={HeaderButton}
+                        >
+                            <Item 
+                                title="Cart" 
+                                iconName="ios-cart"
+                                onPress={() => {
+                                    console.log('cart');
+                                    //navigation.navigate('Cart')
+                                }}
+                            />
+                        </HeaderButtons>
+                    ),
+                    headerLeft: () => (
+                        <HeaderButtons
+                            HeaderButtonComponent={HeaderButton}
+                        >
+                            <Item 
+                                title="Menu" 
+                                iconName="ios-menu"
+                                onPress={() => {
+                                    navigation.toggleDrawer();
+                                }}
+                            />
+                        </HeaderButtons>
+                    )
+                })}
+            />
+            <Stack.Screen 
+                name="ProductDetails" 
+                component={ProductDetailsScreen} 
+            />
+            <Stack.Screen 
+                name="Cart" 
+                component={CartScreen} 
+                options={() => ({
+                    title: 'My cart'
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const OrdersNavigator = ({ navigation }) => {
+    return (
+        <Stack.Navigator
+            initialRouteName="Orders"
+            screenOptions={defaultStackNavOptions}
+        >
+            <Stack.Screen 
+                name="Orders" 
+                component={OrdersScreen}
+                options={({ route }) => ({ 
+                    title: 'My orders',
+                    headerLeft: () => (
+                        <HeaderButtons
+                            HeaderButtonComponent={HeaderButton}
+                        >
+                            <Item 
+                                title="Menu" 
+                                iconName="ios-menu"
+                                onPress={() => {
+                                    navigation.toggleDrawer();
+                                }}
+                            />
+                        </HeaderButtons>
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const ManageProductsNavigator = ({ navigation }) => {
+    return (
+        <Stack.Navigator
+            initialRouteName="UserProductsOverview"
+            screenOptions={defaultStackNavOptions}
+        >
+            <Stack.Screen 
+                name="UserProductsOverview" 
+                component={UserProductsOverviewScreen}
+                options={({ route }) => ({ 
+                    title: 'My products',
+                    headerLeft: () => (
+                        <HeaderButtons
+                            HeaderButtonComponent={HeaderButton}
+                        >
+                            <Item 
+                                title="Menu" 
+                                iconName="ios-menu"
+                                onPress={() => {
+                                    navigation.toggleDrawer();
+                                }}
+                            />
+                        </HeaderButtons>
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName="ProductsOverview"
-                screenOptions={defaultStackNavOptions}
-            >
-                <Stack.Screen 
-                    name="ProductsOverview" 
-                    component={ProductsOverviewScreen} 
-                    options={() => ({
-                        title: 'The Plant Shop',
-                        headerRight: () => (
-                            <HeaderButtons
-                            HeaderButtonComponent={HeaderButton}
-                            >
-                                <Item 
-                                    title="Cart" 
-                                    iconName="ios-cart"
-                                    onPress={() => {
-                                        console.log('cart');
-                                        //navigation.navigate('Cart')
-                                    }}
-                                />
-                            </HeaderButtons>
-                        )
-                    })}
+            <Drawer.Navigator>
+                <Drawer.Screen 
+                    name="Shop" 
+                    component={ShopNavigator} 
                 />
-                <Stack.Screen 
-                    name="ProductDetails" 
-                    component={ProductDetailsScreen} 
+                <Drawer.Screen 
+                    name="Orders" 
+                    component={OrdersNavigator} 
                 />
-                <Stack.Screen 
-                    name="Cart" 
-                    component={CartScreen} 
-                    options={() => ({
-                        title: 'My cart'
-                    })}
+                <Drawer.Screen 
+                    name="Products" 
+                    component={ManageProductsNavigator} 
                 />
-            </Stack.Navigator>
+            </Drawer.Navigator>
         </NavigationContainer>
     );
 };
 
-export default Products;
+export default MainNavigator;
