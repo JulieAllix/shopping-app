@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductsOverviewScreen from '../screens/ProductsOverviewScreen';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 
 const Stack = createStackNavigator();
@@ -34,7 +36,22 @@ const Products = ({navigation}) => {
                 <Stack.Screen 
                     name="ProductsOverview" 
                     component={ProductsOverviewScreen} 
-                    options={() => ({title: 'The Plant Shop'})}
+                    options={() => ({
+                        title: 'The Plant Shop',
+                        headerRight: () => (
+                            <HeaderButtons
+                            HeaderButtonComponent={HeaderButton}
+                            >
+                                <Item 
+                                    title="Cart" 
+                                    iconName="ios-cart"
+                                    onPress={() => {
+                                        console.log('Click panier !');
+                                    }}
+                                />
+                            </HeaderButtons>
+                        )
+                    })}
                 />
                 <Stack.Screen 
                     name="ProductDetails" 
