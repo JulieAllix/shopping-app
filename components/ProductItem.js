@@ -46,7 +46,11 @@ const ProductItem = props => {
                         >
                             Details
                         </MyButton>
-                        <MyButton>Add to cart</MyButton>
+                        <MyButton
+                            onPress={props.onClickOnCart}
+                        >
+                            Add to cart
+                        </MyButton>
                     </View>
                 </View>
             </TouchableCmp>

@@ -6,6 +6,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import ProductsOverviewScreen from '../screens/ProductsOverviewScreen';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import CartScreen from '../screens/CartScreen';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 
@@ -36,9 +37,9 @@ const Products = ({navigation}) => {
                 <Stack.Screen 
                     name="ProductsOverview" 
                     component={ProductsOverviewScreen} 
-                    options={() => ({
+                    options={({ navigation }) => ({
                         title: 'The Plant Shop',
-                        headerRight: () => (
+                        headerRight: ({ navigation }) => (
                             <HeaderButtons
                             HeaderButtonComponent={HeaderButton}
                             >
@@ -46,7 +47,8 @@ const Products = ({navigation}) => {
                                     title="Cart" 
                                     iconName="ios-cart"
                                     onPress={() => {
-                                        console.log('Click panier !');
+                                        console.log('cart');
+                                        //navigation.navigation.navigate('Cart')
                                     }}
                                 />
                             </HeaderButtons>
@@ -56,6 +58,10 @@ const Products = ({navigation}) => {
                 <Stack.Screen 
                     name="ProductDetails" 
                     component={ProductDetailsScreen} 
+                />
+                <Stack.Screen 
+                    name="Cart" 
+                    component={CartScreen} 
                 />
             </Stack.Navigator>
         </NavigationContainer>
