@@ -19,8 +19,16 @@ const CartScreen = props => {
                 <DefaultText>Total sum : €</DefaultText>
                 <MyButton>Order</MyButton>
             </View>
-            <CartItem />
-            <CartItem />
+            <CartItem
+                qty="1"
+                item="Bono the Bonzaï"
+                price="24.49"
+            />
+            <CartItem
+                qty="2"
+                item="Hervé the nice plant"
+                price="10.99"
+            />
         </View>
     );
 };

@@ -1,20 +1,22 @@
 import React from 'react';
 import { 
     View,
+    Text,
     StyleSheet
 } from 'react-native';
 
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
+import Colors from '../constants/Colors';
 import DefaultText from '../components/DefaultText';
 
 const CartItem = props => {
     
     return ( 
         <View style={styles.cartContent}>
-            <DefaultText>1 x Bono the Bonzaï</DefaultText>
-            <DefaultText>24.49€</DefaultText>
-            <FontAwesome5 name="trash" size={24} color="black" />
+            <Text style={{...styles.item, ...props.style}}>{props.qty} x {props.item}</Text>
+            <Text>{props.price}€</Text>
+            <FontAwesome5 name="trash" size={24} color={Colors.primaryColor} />
         </View>
     );
 };
@@ -25,6 +27,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         marginVertical: 10
+    },
+    item: {
+        width: '35%',
+        fontFamily: 'noto',
+        textAlign: 'center',
+        marginHorizontal: 10,
+        fontSize: 16,
+        color: Colors.primaryColor
     }
 });
 
