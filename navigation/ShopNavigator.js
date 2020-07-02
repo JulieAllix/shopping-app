@@ -28,16 +28,16 @@ const Products = ({navigation}) => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="Products Overview"
+                initialRouteName="ProductsOverview"
                 screenOptions={defaultStackNavOptions}
             >
                 <Stack.Screen 
-                    name="Products Overview" 
+                    name="ProductsOverview" 
                     component={ProductsOverviewScreen} 
                     options={() => ({title: 'Shop'})}
                 />
                 <Stack.Screen 
-                    name="Product Details" 
+                    name="ProductDetails" 
                     component={ProductDetailsScreen} 
                 />
             </Stack.Navigator>

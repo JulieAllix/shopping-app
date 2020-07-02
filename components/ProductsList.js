@@ -18,7 +18,7 @@ const ProductsList = props => {
                 onSelectedItem={
                     () => {
                         props.navigation.navigate(
-                            'Product Details', 
+                            'ProductDetails', 
                             {id: itemData.item.id}
                         )
                     }
