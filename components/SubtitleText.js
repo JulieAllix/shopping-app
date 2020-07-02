@@ -11,7 +11,7 @@ const SubtitleText = props => {
 
 const styles = StyleSheet.create({
     text: {
-        fontFamily: 'noto-b',
+        fontFamily: 'inconsolata',
         textAlign: 'center',
         marginHorizontal: 10,
         fontSize: 22,

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     shopItem: {
         height: 320,
         width: '95%',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'white',
         borderRadius: 10,
         overflow: 'hidden',
         marginVertical: 10,

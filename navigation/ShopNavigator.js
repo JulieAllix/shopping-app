@@ -21,7 +21,7 @@ const Drawer = createDrawerNavigator();
 const defaultStackNavOptions = {
     headerStyle: {
         backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white',
-        height: Platform.OS === 'android' ? 100 : 50,
+        height: Platform.OS === 'android' ? 100 : 70,
     },
     headerTitleStyle: {
         fontFamily: 'noto-b',
@@ -150,7 +150,13 @@ const ManageProductsNavigator = ({ navigation }) => {
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <Drawer.Navigator>
+            <Drawer.Navigator
+                drawerContentOptions={{
+                    activeTintColor: Colors.accentColor,
+                    labelStyle: {
+                        fontFamily: 'noto'
+                    }
+                }}>
                 <Drawer.Screen 
                     name="Shop" 
                     component={ShopNavigator} 

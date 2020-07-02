@@ -20,7 +20,8 @@ const fetchFonts = () => {
   return Font.loadAsync({
     'notable': require('./assets/fonts/Notable-Regular.ttf'),
     'noto': require('./assets/fonts/NotoSans-Regular.ttf'),
-    'noto-b': require('./assets/fonts/NotoSans-Bold.ttf')
+    'noto-b': require('./assets/fonts/NotoSans-Bold.ttf'),
+    'inconsolata': require('./assets/fonts/Inconsolata-Bold.ttf'),
   });
 }
 
