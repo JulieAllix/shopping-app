@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
+import Colors from '../constants/Colors';
+
 const SubtitleText = props => {
     return (
         <Text style={styles.text}>{props.children}</Text>
@@ -13,6 +15,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginHorizontal: 10,
         fontSize: 22,
+        color: Colors.primaryColor
     }
 });
 

@@ -10,7 +10,7 @@ import ProductsList from '../components/ProductsList';
 
 const ProductsOverviewScreen = ({ navigation }) => {
     const availableProducts = useSelector(state => state.products.availableProducts);
-    
+
     return ( 
         <ProductsList  
             listData={availableProducts}

@@ -60,7 +60,7 @@ const ProductItem = props => {
 
 const styles = StyleSheet.create({
     shopItem: {
-        height: 300,
+        height: 320,
         width: '95%',
         backgroundColor: '#f5f5f5',
         borderRadius: 10,
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: '18%'
+        height: '18%',
+        paddingTop: 10,
     },
     itemButtons: {
         paddingHorizontal: 10,

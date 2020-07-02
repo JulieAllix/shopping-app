@@ -42,7 +42,7 @@ const ShopNavigator = ({navigation}) => {
             <Stack.Screen 
                 name="ProductsOverview" 
                 component={ProductsOverviewScreen} 
-                options={() => ({
+                options={({ route }) => ({
                     title: 'The Plant Shop',
                     headerRight: () => (
                         <HeaderButtons
@@ -51,10 +51,6 @@ const ShopNavigator = ({navigation}) => {
                             <Item 
                                 title="Cart" 
                                 iconName="ios-cart"
-                                onPress={() => {
-                                    console.log('cart');
-                                    //navigation.navigate('Cart')
-                                }}
                             />
                         </HeaderButtons>
                     ),
