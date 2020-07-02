@@ -37,9 +37,9 @@ const Products = ({navigation}) => {
                 <Stack.Screen 
                     name="ProductsOverview" 
                     component={ProductsOverviewScreen} 
-                    options={({ navigation }) => ({
+                    options={() => ({
                         title: 'The Plant Shop',
-                        headerRight: ({ navigation }) => (
+                        headerRight: () => (
                             <HeaderButtons
                             HeaderButtonComponent={HeaderButton}
                             >
@@ -48,7 +48,7 @@ const Products = ({navigation}) => {
                                     iconName="ios-cart"
                                     onPress={() => {
                                         console.log('cart');
-                                        //navigation.navigation.navigate('Cart')
+                                        //navigation.navigate('Cart')
                                     }}
                                 />
                             </HeaderButtons>
@@ -62,6 +62,9 @@ const Products = ({navigation}) => {
                 <Stack.Screen 
                     name="Cart" 
                     component={CartScreen} 
+                    options={() => ({
+                        title: 'My cart'
+                    })}
                 />
             </Stack.Navigator>
         </NavigationContainer>
