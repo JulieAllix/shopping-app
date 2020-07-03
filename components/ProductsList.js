@@ -8,7 +8,7 @@ import {
 import ProductItem from './ProductItem';
 
 const ProductsList = props => {
-    const renderShopItem = (itemData) => {
+    const renderProductItem = (itemData) => {
         return (
             <ProductItem
                 title={itemData.item.title}
@@ -47,7 +47,7 @@ const ProductsList = props => {
             <FlatList 
                 data={props.listData}
                 keyExtractor={(item, index) => item.id}
-                renderItem={renderShopItem}
+                renderItem={renderProductItem}
                 style={{width: '100%'}}
             />
         </View>
