@@ -15,6 +15,7 @@ import CartList from '../components/CartList';
 
 const CartScreen = props => {
     const cartItems = useSelector(state => state.products.productsInCart);
+    const totalPrice = useSelector(state => state.products.totalPrice);
 
     if (cartItems.length === 0 || !cartItems) {
         return (
@@ -27,7 +28,7 @@ const CartScreen = props => {
     return ( 
         <View style={styles.contentFullCart}>
             <View style={styles.cartHeader}>
-                <DefaultText>Total sum : €</DefaultText>
+                <DefaultText>Total sum : {totalPrice} €</DefaultText>
                 <MyButton>Order</MyButton>
             </View>
             <CartList 
