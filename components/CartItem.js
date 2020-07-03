@@ -16,7 +16,12 @@ const CartItem = props => {
         <View style={styles.cartContent}>
             <Text style={{...styles.item, ...props.style}}>{props.qty} x {props.item}</Text>
             <Text>{props.price}€</Text>
-            <FontAwesome5 name="trash" size={24} color={Colors.primaryColor} />
+            <FontAwesome5   
+                name="trash" 
+                size={24} 
+                color={Colors.primaryColor}
+                onPress={props.onClickOnTrash}
+            />
         </View>
     );
 };

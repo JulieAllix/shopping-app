@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../store/actions/products';
 
 import CartItem from './CartItem';
 
 const CartList = props => {
+    const dispatch = useDispatch();
+    const removeFromCartHandler = (productId) => {
+        dispatch(removeFromCart(productId));
+    };
 
     const renderProductItem = itemData => {
         //console.log(itemData.item.title);
@@ -14,6 +19,11 @@ const CartList = props => {
                 id={itemData.item.id}
                 item={itemData.item.title} 
                 price={itemData.item.price} 
+                onClickOnTrash={
+                    () => {
+                        removeFromCartHandler(itemData.item.id);
+                    }
+                }
             />
         );
     };
