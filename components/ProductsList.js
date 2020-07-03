@@ -11,14 +11,11 @@ import ProductItem from './ProductItem';
 
 const ProductsList = props => {
     let cartItems = useSelector(state => state.products.productsInCart);
-    console.log(cartItems);
     const dispatch = useDispatch();
     const addToCartHandler = (productId) => {
         dispatch(addToCart(productId));
     };
-    const checkCart = () => {
-        
-    };
+
 
     const renderProductItem = (itemData) => {
         const productId = itemData.item.id;
@@ -49,13 +46,10 @@ const ProductsList = props => {
                 onClickOnCart={
                     () => {
                         addToCartHandler(productId);
-                        checkCart();
-                        /*
                         props.navigation.navigate(
                             'Cart', 
                             {id: itemData.item.id}
                         );
-                        */
                     }
                 }
             />
