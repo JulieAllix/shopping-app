@@ -13,12 +13,12 @@ import SubtitleText from './SubtitleText';
 import DefaultText from './DefaultText';
 import MyButton from './MyButton';
 
-const ProductItem = props => {
+const ProductItem = props => {  
     let TouchableCmp = TouchableOpacity;
-
     if (Platform.OS === 'android') {
         TouchableCmp = TouchableNativeFeedback;
     }
+
     return (
         <View style={styles.shopItem}>
             <TouchableCmp 

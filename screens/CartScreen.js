@@ -11,66 +11,48 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
-import CartItem from '../components/CartItem';
+import CartList from '../components/CartList';
 
 const CartScreen = props => {
     const cartItems = useSelector(state => state.products.productsInCart);
 
     if (cartItems.length === 0 || !cartItems) {
         return (
-            <View style={styles.content}>
+            <View style={styles.contentVoidCart}>
                 <DefaultText>Your cart is empty</DefaultText>
             </View>
         )
     }
 
-    const renderProductItem = itemData => {
-        const isFavorite = favoriteMeals.some(meal => meal.id === itemData.item.id);
-        return (
-            <CartItem 
-                qty='1'
-                id={itemData.item.id}
-                item={itemData.item.title} 
-                price={itemData.item.price} 
-            />
-        );
-    };
-
     return ( 
-        <View>
+        <View style={styles.contentFullCart}>
             <View style={styles.cartHeader}>
                 <DefaultText>Total sum : €</DefaultText>
                 <MyButton>Order</MyButton>
             </View>
-            <View style={styles.list}>
-                <FlatList 
-                    data={cartItems}
-                    keyExtractor={(item, index) => item.id}
-                    renderItem={renderProductItem}
-                    style={{width: '100%'}}
-                />
-            </View>
+            <CartList 
+                listData={cartItems}
+                navigation={props.navigation} 
+            />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    content: {
+    contentVoidCart: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
+    contentFullCart: {
+        flex: 1,
+    },
     cartHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        marginVertical: 10
-    },
-    list: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 15,
+        justifyContent: 'space-between',
+        marginVertical: 10,
+        marginHorizontal: 15,
     },
 });
 

@@ -4,13 +4,28 @@ import {
     FlatList, 
     StyleSheet
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../store/actions/products';
 
 import ProductItem from './ProductItem';
 
 const ProductsList = props => {
+    let cartItems = useSelector(state => state.products.productsInCart);
+    console.log(cartItems);
+    const dispatch = useDispatch();
+    const addToCartHandler = (productId) => {
+        dispatch(addToCart(productId));
+    };
+    const checkCart = () => {
+        
+    };
+
     const renderProductItem = (itemData) => {
+        const productId = itemData.item.id;
+
         return (
             <ProductItem
+                id={itemData.item.id}
                 title={itemData.item.title}
                 description={itemData.item.description}
                 price={itemData.item.price}
@@ -20,7 +35,7 @@ const ProductsList = props => {
                         props.navigation.navigate(
                             'ProductDetails', 
                             {id: itemData.item.id}
-                        )
+                        );
                     }
                 }
                 onClickOnDetails={
@@ -33,10 +48,14 @@ const ProductsList = props => {
                 }
                 onClickOnCart={
                     () => {
+                        addToCartHandler(productId);
+                        checkCart();
+                        /*
                         props.navigation.navigate(
                             'Cart', 
                             {id: itemData.item.id}
-                        )
+                        );
+                        */
                     }
                 }
             />

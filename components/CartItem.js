@@ -25,16 +25,17 @@ const styles = StyleSheet.create({
     cartContent: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        marginVertical: 10
+        justifyContent: 'space-between',
+        marginVertical: 10,
+        marginHorizontal: 15
     },
     item: {
-        width: '35%',
+        width: '40%',
         fontFamily: 'noto',
         textAlign: 'center',
         marginHorizontal: 10,
         fontSize: 16,
-        color: Colors.primaryColor
+        color: Colors.primaryColor, 
     }
 });
 
