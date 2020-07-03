@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet
 } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
@@ -11,10 +12,13 @@ import Colors from '../constants/Colors';
 import DefaultText from '../components/DefaultText';
 
 const CartItem = props => {
-    
+    const qtiesData = useSelector(state => state.products.qtiesInCart);
+    const product = qtiesData.find(product => product.id === props.id);
+    const productQty = product.qty;
+
     return ( 
         <View style={styles.cartContent}>
-            <Text style={{...styles.item, ...props.style}}>{props.qty} x {props.item}</Text>
+            <Text style={{...styles.item, ...props.style}}>{productQty} x {props.item}</Text>
             <Text>{props.price}€</Text>
             <FontAwesome5   
                 name="trash" 

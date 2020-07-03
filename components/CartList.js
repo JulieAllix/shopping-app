@@ -6,6 +6,7 @@ import { removeFromCart } from '../store/actions/products';
 import CartItem from './CartItem';
 
 const CartList = props => {
+
     const dispatch = useDispatch();
     const removeFromCartHandler = (productId) => {
         dispatch(removeFromCart(productId));
@@ -15,7 +16,6 @@ const CartList = props => {
         //console.log(itemData.item.title);
         return (
             <CartItem 
-                qty='1'
                 id={itemData.item.id}
                 item={itemData.item.title} 
                 price={itemData.item.price} 
