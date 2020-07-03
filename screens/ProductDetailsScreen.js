@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { 
     Text,
     StyleSheet,
@@ -7,6 +7,8 @@ import {
     Image,
     View
 } from 'react-native';
+
+import { addToCart } from '../store/actions/products';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
@@ -24,6 +26,11 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         });
     });
 
+    const dispatch = useDispatch();
+    const addToCartHandler = (productId) => {
+        dispatch(addToCart(productId));
+    };
+
     return ( 
         <ScrollView style={styles.screen}>
             <Image source={{uri: selectedProduct.imageUrl}} style={styles.image} />
@@ -33,9 +40,10 @@ const ProductDetailsScreen = ({ route, navigation }) => {
                 <MyButton
                     onPress={
                     () => {
+                        addToCartHandler(productId);
                         navigation.navigate(
                             'Cart'
-                        )
+                        );
                     }
                 }
                 >
