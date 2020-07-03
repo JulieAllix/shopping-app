@@ -1,12 +1,19 @@
-//import {  } from '../actions/orders';
+import { TOGGLE_ORDER_DETAILS } from '../actions/orders';
 
 const initialState = {
-    expandOrder: true,
+    expandOrder: false,
 };
 
 const ordersReducer = (state = initialState, action) => {
-    
-        return state;
+    switch (action.type) {
+        case TOGGLE_ORDER_DETAILS:
+            return { 
+                ...state, 
+                expandOrder: action.status,
+            };
+        default:
+            return state;
+    }
     
 }
 

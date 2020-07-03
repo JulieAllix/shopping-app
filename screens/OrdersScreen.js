@@ -4,7 +4,9 @@ import {
     Text,
     StyleSheet
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { toggleOrderDetails } from '../store/actions/orders';
 
 import DefaultText from '../components/DefaultText';
 import OrderItem from '../components/OrderItem';
@@ -20,6 +22,11 @@ const OrdersScreen = props => {
 
     const isOrderExpanded = useSelector(state => state.orders.expandOrder);
 
+    const dispatch = useDispatch();
+    const buttonHandler = (id, bool) => {
+        dispatch(toggleOrderDetails(id, bool));
+    };
+
     return ( 
         <View style={styles.orderContainer}>
             <View style={styles.orderRow}>
@@ -33,13 +40,29 @@ const OrdersScreen = props => {
                     price="22.99"
                 />
                 <View style={styles.buttonContainer}>
-                    <MyButton>Close</MyButton>
+                    <MyButton
+                        onPress={
+                            () => {
+                                buttonHandler(1, false);
+                            }
+                        }
+                    >
+                        Close
+                    </MyButton>
                 </View> 
             </View> 
             : 
             <View>
                 <View style={styles.buttonContainer}>
-                    <MyButton>More</MyButton>
+                    <MyButton
+                        onPress={
+                            () => {
+                                buttonHandler(1, true);
+                            }
+                        }
+                    >
+                        More
+                    </MyButton>
                 </View>
             </View>
             }
