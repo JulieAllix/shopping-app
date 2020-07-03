@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const productsReducer = (state = initialState, action) => {
+    
     const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
     const product = state.availableProducts.find(product => product.id === action.productId);
     

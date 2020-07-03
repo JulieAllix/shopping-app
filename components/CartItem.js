@@ -18,7 +18,8 @@ const CartItem = props => {
 
     return ( 
         <View style={styles.cartContent}>
-            <Text style={{...styles.item, ...props.style}}>{productQty} x {props.item}</Text>
+            <Text style={styles.qty}>{productQty} x</Text>
+            <Text style={{...styles.item, ...props.style}}>{props.item}</Text>
             <Text>{props.price}€</Text>
             <FontAwesome5   
                 name="trash" 
@@ -38,8 +39,11 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 15
     },
+    qty: {
+
+    },
     item: {
-        width: '40%',
+        width: '35%',
         fontFamily: 'noto',
         textAlign: 'center',
         marginHorizontal: 10,
