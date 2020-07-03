@@ -9,9 +9,12 @@ import { AppLoading } from 'expo';
 
 import ShopNavigator from './navigation/ShopNavigator';
 import productsReducer from './store/reducers/products';
+import ordersReducer from './store/reducers/orders';
+
 
 const rootReducer = combineReducers({
   products: productsReducer,
+  orders: ordersReducer,
 });
  
 const store = createStore(rootReducer);

@@ -4,29 +4,16 @@ import {
     Text,
     StyleSheet
 } from 'react-native';
-import { useSelector } from 'react-redux';
-
-import { FontAwesome5 } from '@expo/vector-icons'; 
 
 import Colors from '../constants/Colors';
-import DefaultText from '../components/DefaultText';
 
-const CartItem = props => {
-    const qtiesData = useSelector(state => state.products.qtiesInCart);
-    const product = qtiesData.find(product => product.id === props.id);
-    const productQty = product.qty;
+const OrderItem = props => {
 
     return ( 
         <View style={styles.cartContent}>
-            <Text style={styles.regular}>{productQty} x</Text>
+            <Text style={styles.regular}>1 x</Text>
             <Text style={{...styles.item, ...props.style}}>{props.item}</Text>
             <Text style={styles.regular}>{props.price}€</Text>
-            <FontAwesome5   
-                name="trash" 
-                size={24} 
-                color={Colors.primaryColor}
-                onPress={props.onClickOnTrash}
-            />
         </View>
     );
 };
@@ -52,4 +39,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CartItem;
+export default OrderItem;
