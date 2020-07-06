@@ -15,7 +15,12 @@ const ProductsList = props => {
     const addToCartHandler = (productId) => {
         dispatch(addToCart(productId));
     };
-
+    const editHandler = (productId) => {
+        console.log('Click on edit !');
+    };
+    const deleteHandler = (productId) => {
+        console.log('Click on delete !');
+    };
 
     const renderProductItem = (itemData) => {
         const productId = itemData.item.id;
@@ -27,8 +32,7 @@ const ProductsList = props => {
                 description={itemData.item.description}
                 price={itemData.item.price}
                 imageUrl={itemData.item.imageUrl}
-                leftButton={props.leftButton}
-                rightButton={props.rightButton}
+                screen={props.screen}
                 onSelectedItem={
                     () => {
                         props.navigation.navigate(
@@ -54,6 +58,16 @@ const ProductsList = props => {
                         );
                     }
                 }
+                onClickOnEdit={
+                    () => {
+                        editHandler(productId);
+                    }
+                }
+                onClickOnDelete={
+                    () => {
+                        deleteHandler(productId);
+                    }
+                }
             />
         );
     };
@@ -64,8 +78,7 @@ const ProductsList = props => {
                 keyExtractor={(item, index) => item.id}
                 renderItem={renderProductItem}
                 style={{width: '100%'}}
-                leftButton={props.leftButton}
-                rightButton={props.rightButton}
+                screen={props.screen}
             />
         </View>
     )

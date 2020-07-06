@@ -15,8 +15,7 @@ const UserProductsOverviewScreen = ({ navigation }) => {
         <ProductsList  
             listData={availableProducts}
             navigation={navigation}
-            leftButton="Edit"
-            rightButton="Delete" 
+            screen="UserProducts" 
         />
     );
 };

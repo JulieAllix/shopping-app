@@ -40,18 +40,35 @@ const ProductItem = props => {
                         </SubtitleText>
                         <DefaultText>{props.price}€</DefaultText>
                     </View>
+                    {props.screen === "Products" ?
                     <View style={{...styles.itemRow, ...styles.itemButtons}}>
                         <MyButton
-                            onPress={props.onClickOnDetails}
+                         onPress={props.onClickOnDetails}
                         >
-                            {props.leftButton}
+                            Details
                         </MyButton>
                         <MyButton
                             onPress={props.onClickOnCart}
                         >
-                            {props.rightButton}
+                            Add to cart
                         </MyButton>
                     </View>
+                    : 
+                    <View style={{...styles.itemRow, ...styles.itemButtons}}>
+                        <MyButton
+                         onPress={props.onClickOnEdit}
+                        >
+                            Edit
+                        </MyButton>
+                    
+                        <MyButton
+                            onPress={props.onClickOnDelete}
+                        >
+                            Delete
+                        </MyButton>
+                    </View>
+                    }
+                    
                 </View>
             </TouchableCmp>
         </View>  
