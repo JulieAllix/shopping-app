@@ -5,17 +5,26 @@ import {
     Text,
     FlatList,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesome5 } from '@expo/vector-icons'; 
+
+import { createOrder } from '../store/actions/orders';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
 import CartList from '../components/CartList';
 
 const CartScreen = props => {
+    const dispatch = useDispatch();
     const cartItems = useSelector(state => state.products.productsInCart);
+    const qtiesData = useSelector(state => state.products.qtiesInCart);
     const totalPrice = useSelector(state => state.products.totalPrice);
+
+    const handleOrderButton = () => {
+        console.log('cc');
+        dispatch(createOrder(cartItems, qtiesData));
+    };
 
     if (cartItems.length === 0 || !cartItems) {
         return (
@@ -29,7 +38,11 @@ const CartScreen = props => {
         <View style={styles.contentFullCart}>
             <View style={styles.cartHeader}>
                 <DefaultText>Total sum : {totalPrice} €</DefaultText>
-                <MyButton>Order</MyButton>
+                <MyButton
+                    onPress={handleOrderButton}
+                >
+                    Order
+                </MyButton>
             </View>
             <CartList 
                 listData={cartItems}
