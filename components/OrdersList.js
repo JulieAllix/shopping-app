@@ -2,17 +2,14 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import OrderItem from './OrderItem';
+import Order from './Order';
 
-const OrderList = props => {
+const OrdersList = props => {
 
     const renderOrderItem = itemData => {
         return (
-            <OrderItem 
-                id={itemData.item.id}
-                title={itemData.item.title} 
-                price={itemData.item.price} 
-                qty={itemData.item.qty} 
+            <Order 
+                order={itemData}
             />
         );
     };
@@ -29,4 +26,4 @@ const OrderList = props => {
     );
 };
 
-export default OrderList;
+export default OrdersList;
