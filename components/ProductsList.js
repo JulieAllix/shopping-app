@@ -27,6 +27,8 @@ const ProductsList = props => {
                 description={itemData.item.description}
                 price={itemData.item.price}
                 imageUrl={itemData.item.imageUrl}
+                leftButton={props.leftButton}
+                rightButton={props.rightButton}
                 onSelectedItem={
                     () => {
                         props.navigation.navigate(
@@ -62,6 +64,8 @@ const ProductsList = props => {
                 keyExtractor={(item, index) => item.id}
                 renderItem={renderProductItem}
                 style={{width: '100%'}}
+                leftButton={props.leftButton}
+                rightButton={props.rightButton}
             />
         </View>
     )

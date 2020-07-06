@@ -15,6 +15,8 @@ const ProductsOverviewScreen = ({ navigation }) => {
         <ProductsList  
             listData={availableProducts}
             navigation={navigation} 
+            leftButton="Details"
+            rightButton="Add to cart"
         />
     );
 };

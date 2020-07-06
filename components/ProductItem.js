@@ -44,12 +44,12 @@ const ProductItem = props => {
                         <MyButton
                             onPress={props.onClickOnDetails}
                         >
-                            Details
+                            {props.leftButton}
                         </MyButton>
                         <MyButton
                             onPress={props.onClickOnCart}
                         >
-                            Add to cart
+                            {props.rightButton}
                         </MyButton>
                     </View>
                 </View>

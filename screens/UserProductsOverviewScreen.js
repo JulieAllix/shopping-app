@@ -1,19 +1,32 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { 
-    Text,
-    StyleSheet
+    View,
+    StyleSheet,
+    Text
 } from 'react-native';
 
+import ProductsList from '../components/ProductsList';
 
-const UserProductsOverviewScreen = props => {
-    
+const UserProductsOverviewScreen = ({ navigation }) => {
+    const availableProducts = useSelector(state => state.products.availableProducts);
+
     return ( 
-        <Text>This is UserProductsOverviewScreen !</Text>
+        <ProductsList  
+            listData={availableProducts}
+            navigation={navigation}
+            leftButton="Edit"
+            rightButton="Delete" 
+        />
     );
 };
 
 const styles = StyleSheet.create({
-
+    screen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 });
 
 export default UserProductsOverviewScreen;
