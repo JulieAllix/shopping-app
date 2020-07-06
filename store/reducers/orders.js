@@ -6,6 +6,7 @@ import {
 const initialState = {
     expandOrder: false,
     orders: [],
+    lastId: 0,
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -18,20 +19,13 @@ const ordersReducer = (state = initialState, action) => {
         case CREATE_ORDER:
             const cartItems = action.cartItems;
             const qtiesData = action.qtiesData;
-            const order = cartItems.map(cartItem => {
-                return {
-                id: cartItem.id,
-                title: cartItem.title,
-                price: cartItem.price,
-                qty: qtiesData.find(product => product.id === cartItem.id).qty,
-                }
-            });
-            console.log('cartItems');
-            console.log(cartItems);
+
+            const updatedOrders = [...state.orders, order];
 
             return { 
                 ...state, 
-                orders: state.orders.concat(order),
+                orders: updatedOrders,
+                lastId: state.lastId + 1,
             };
         default:
             return state;

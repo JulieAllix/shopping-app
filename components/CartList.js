@@ -19,6 +19,7 @@ const CartList = props => {
                 id={itemData.item.id}
                 item={itemData.item.title} 
                 price={itemData.item.price} 
+                qty={itemData.item.qty} 
                 onClickOnTrash={
                     () => {
                         removeFromCartHandler(itemData.item.id);
