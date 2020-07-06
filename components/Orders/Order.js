@@ -31,7 +31,7 @@ const Order = props => {
     return (
         <View style={styles.orderContainer}>
             <View style={styles.orderRow}>
-                <DefaultText>Sum</DefaultText>
+                <DefaultText>{props.order.item.sum}€</DefaultText>
                 <DefaultText>{fullDate}</DefaultText>
             </View>
             {isOrderExpanded ?

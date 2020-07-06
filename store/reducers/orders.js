@@ -14,13 +14,17 @@ const ordersReducer = (state = initialState, action) => {
         case TOGGLE_ORDER_DETAILS:
             const existingIndex = state.orders.findIndex(order => order.id === action.orderId);
             const currentOrder = state.orders.find(order => order.id === action.orderId);
+
             const updatedOrderStatus = {
                 id: currentOrder.id,
                 expandOrder: action.status,
+                sum: currentOrder.sum,
                 content: currentOrder.content,
             }
+
             const updatedOrder = [...state.orders];
             updatedOrder.splice(existingIndex, 1, updatedOrderStatus);
+
             return { 
                 ...state, 
                 orders: updatedOrder,
@@ -30,6 +34,7 @@ const ordersReducer = (state = initialState, action) => {
             const order = {
                 id: state.lastId + 1,
                 expandOrder: false,
+                sum: action.totalPrice,
                 content: action.cartItems,
             }
 

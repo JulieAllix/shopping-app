@@ -21,7 +21,7 @@ const CartScreen = props => {
     const totalPrice = useSelector(state => state.products.totalPrice);
 
     const handleOrderButton = () => {
-        dispatch(createOrder(cartItems));
+        dispatch(createOrder(cartItems, totalPrice));
     };
 
     if (cartItems.length === 0 || !cartItems) {

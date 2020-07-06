@@ -9,9 +9,10 @@ export const toggleOrderDetails = (id, bool) => {
     };
 };
 
-export const createOrder = (cartItems) => {
+export const createOrder = (cartItems, totalPrice) => {
     return { 
         type: CREATE_ORDER, 
         cartItems: cartItems,
+        totalPrice: totalPrice,
     };
 };
