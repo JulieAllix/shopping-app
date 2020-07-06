@@ -18,12 +18,10 @@ import CartList from '../components/CartList';
 const CartScreen = props => {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.products.productsInCart);
-    const qtiesData = useSelector(state => state.products.qtiesInCart);
     const totalPrice = useSelector(state => state.products.totalPrice);
 
     const handleOrderButton = () => {
-        console.log('cc');
-        dispatch(createOrder(cartItems, qtiesData));
+        dispatch(createOrder(cartItems));
     };
 
     if (cartItems.length === 0 || !cartItems) {

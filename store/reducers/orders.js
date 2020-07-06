@@ -17,14 +17,15 @@ const ordersReducer = (state = initialState, action) => {
                 expandOrder: action.status,
             };
         case CREATE_ORDER:
-            const cartItems = action.cartItems;
-            const qtiesData = action.qtiesData;
 
-            const updatedOrders = [...state.orders, order];
+            const order = {
+                id: state.lastId + 1,
+                content: action.cartItems,
+            }
 
             return { 
                 ...state, 
-                orders: updatedOrders,
+                orders: state.orders.concat(order),
                 lastId: state.lastId + 1,
             };
         default:
