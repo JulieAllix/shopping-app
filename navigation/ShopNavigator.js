@@ -126,8 +126,21 @@ const ManageProductsNavigator = ({ navigation }) => {
             <Stack.Screen 
                 name="UserProductsOverview" 
                 component={UserProductsOverviewScreen}
-                options={({ route }) => ({ 
+                options={(navData) => ({ 
                     title: 'My products',
+                    headerRight: () => (
+                        <HeaderButtons
+                        HeaderButtonComponent={HeaderButton}
+                        >
+                            <Item 
+                                title="Cart" 
+                                iconName="ios-add-circle"
+                                onPress={() => {
+                                    navData.navigation.navigate('Edit')
+                                }}
+                            />
+                        </HeaderButtons>
+                    ),
                     headerLeft: () => (
                         <HeaderButtons
                             HeaderButtonComponent={HeaderButton}
@@ -141,6 +154,13 @@ const ManageProductsNavigator = ({ navigation }) => {
                             />
                         </HeaderButtons>
                     )
+                })}
+            />
+            <Stack.Screen 
+                name="Edit" 
+                component={EditUserProductsScreen}
+                options={({ route }) => ({ 
+                    title: 'Edit Products',
                 })}
             />
         </Stack.Navigator>
