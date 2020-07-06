@@ -1,5 +1,9 @@
 import PRODUCTS from '../../data/dummy-data';
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/products';
+import { 
+    ADD_TO_CART, 
+    REMOVE_FROM_CART, 
+    EMPTY_CART 
+} from '../actions/products';
 
 const initialState = {
     availableProducts: PRODUCTS,
@@ -102,6 +106,12 @@ const productsReducer = (state = initialState, action) => {
                 };
             }
 
+        case EMPTY_CART:
+            return { 
+                ...state, 
+                productsInCart: [],
+                totalPrice: 0,
+            };
         default:
             return state;
     }

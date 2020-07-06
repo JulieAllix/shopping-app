@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 import { createOrder } from '../store/actions/orders';
+import { emptyCart } from '../store/actions/products';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
@@ -22,6 +23,7 @@ const CartScreen = props => {
 
     const handleOrderButton = () => {
         dispatch(createOrder(cartItems, totalPrice));
+        dispatch(emptyCart());
     };
 
     if (cartItems.length === 0 || !cartItems) {

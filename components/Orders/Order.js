@@ -14,10 +14,7 @@ import DefaultText from '../DefaultText';
 const Order = props => {
     const orderId = props.order.item.id;
     var d = new Date();
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const date = d.getDate();
-    const fullDate = date + '/' + month + '/' + year;
+    const fullDate = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
 
     const ordersList = useSelector(state => state.orders.orders);
     const currentOrder = ordersList.find(order => order.id === orderId);
