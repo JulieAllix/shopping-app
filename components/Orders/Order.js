@@ -31,8 +31,8 @@ const Order = props => {
     return (
         <View style={styles.orderContainer}>
             <View style={styles.orderRow}>
-                <DefaultText>{props.order.item.sum}€</DefaultText>
-                <DefaultText>{fullDate}</DefaultText>
+                <DefaultText>Sum: {props.order.item.sum}€</DefaultText>
+                <DefaultText>Date: {fullDate}</DefaultText>
             </View>
             {isOrderExpanded ?
             <View style={styles.orderDetails}> 
@@ -72,21 +72,24 @@ const Order = props => {
 
 const styles = StyleSheet.create({
     orderContainer: {
-        borderWidth: 1,
-        borderColor: Colors.primaryColor,
+        borderWidth: 3,
+        borderColor: Colors.accentColor,
+        borderRadius: 5,
         margin: 15,
+        padding: 10
     },
     orderRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
     },
     orderDetails: {
-        marginTop: 15,
+        marginTop: 10
     },
     buttonContainer: {
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 10
     }
 });
 
