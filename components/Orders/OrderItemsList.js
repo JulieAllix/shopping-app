@@ -20,7 +20,7 @@ const OrderList = props => {
     return (
         <View>
             <FlatList 
-                data={props.listData}
+                data={props.order}
                 keyExtractor={(item, index) => item.id}
                 renderItem={renderOrderItem}
                 style={{width: '100%'}}

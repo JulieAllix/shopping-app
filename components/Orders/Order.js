@@ -2,12 +2,14 @@ import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { toggleOrderDetails } from '../store/actions/orders';
+import { toggleOrderDetails } from '../../store/actions/orders';
 
-import OrderItem from '../components/OrderItem';
-import MyButton from '../components/MyButton';
-import Colors from '../constants/Colors';
-import DefaultText from '../components/DefaultText';
+import OrderItem from './OrderItem';
+import OrderItemsList from './OrderItemsList';
+
+import MyButton from '../MyButton';
+import Colors from '../../constants/Colors';
+import DefaultText from '../DefaultText';
 
 const Order = props => {
 
@@ -17,8 +19,7 @@ const Order = props => {
     const date = d.getDate();
     const fullDate = date + '/' + month + '/' + year;
 
-    
-const isOrderExpanded = useSelector(state => state.orders.expandOrder);
+    const isOrderExpanded = useSelector(state => state.orders.expandOrder);
 
     const dispatch = useDispatch();
     const buttonHandler = (id, bool) => {
@@ -33,7 +34,9 @@ const isOrderExpanded = useSelector(state => state.orders.expandOrder);
             </View>
             {isOrderExpanded ?
             <View style={styles.orderDetails}> 
-                
+                <OrderItemsList
+                    order={props.order.item.content}
+                />
                 <View style={styles.buttonContainer}>
                     <MyButton
                         onPress={
