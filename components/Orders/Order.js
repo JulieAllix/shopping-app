@@ -12,14 +12,16 @@ import Colors from '../../constants/Colors';
 import DefaultText from '../DefaultText';
 
 const Order = props => {
-
+    const orderId = props.order.item.id;
     var d = new Date();
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
     const date = d.getDate();
     const fullDate = date + '/' + month + '/' + year;
 
-    const isOrderExpanded = useSelector(state => state.orders.expandOrder);
+    const ordersList = useSelector(state => state.orders.orders);
+    const currentOrder = ordersList.find(order => order.id === orderId);
+    const isOrderExpanded = currentOrder.expandOrder;
 
     const dispatch = useDispatch();
     const buttonHandler = (id, bool) => {
@@ -41,7 +43,7 @@ const Order = props => {
                     <MyButton
                         onPress={
                             () => {
-                                buttonHandler(1, false);
+                                buttonHandler(orderId, false);
                             }
                         }
                     >
@@ -55,7 +57,7 @@ const Order = props => {
                     <MyButton
                         onPress={
                             () => {
-                                buttonHandler(1, true);
+                                buttonHandler(orderId, true);
                             }
                         }
                     >

@@ -4,7 +4,7 @@ import {
 } from '../actions/orders';
 
 const initialState = {
-    expandOrder: false,
+    //expandOrder: false,
     orders: [],
     lastId: 0,
 };
@@ -12,14 +12,24 @@ const initialState = {
 const ordersReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_ORDER_DETAILS:
+            const existingIndex = state.orders.findIndex(order => order.id === action.orderId);
+            const currentOrder = state.orders.find(order => order.id === action.orderId);
+            const updatedOrderStatus = {
+                id: currentOrder.id,
+                expandOrder: action.status,
+                content: currentOrder.content,
+            }
+            const updatedOrder = [...state.orders];
+            updatedOrder.splice(existingIndex, 1, updatedOrderStatus);
             return { 
                 ...state, 
-                expandOrder: action.status,
+                orders: updatedOrder,
             };
         case CREATE_ORDER:
 
             const order = {
                 id: state.lastId + 1,
+                expandOrder: false,
                 content: action.cartItems,
             }
 
