@@ -21,13 +21,13 @@ const ordersReducer = (state = initialState, action) => {
             const order = cartItems.map(cartItem => {
                 return {
                 id: cartItem.id,
-                item: cartItem.item,
+                title: cartItem.title,
                 price: cartItem.price,
                 qty: qtiesData.find(product => product.id === cartItem.id).qty,
                 }
             });
-            console.log('order');
-            console.log(order);
+            console.log('cartItems');
+            console.log(cartItems);
 
             return { 
                 ...state, 

@@ -8,12 +8,15 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { toggleOrderDetails } from '../store/actions/orders';
 
+import OrderList from '../components/OrderList';
 import DefaultText from '../components/DefaultText';
 import OrderItem from '../components/OrderItem';
 import MyButton from '../components/MyButton';
 import Colors from '../constants/Colors';
 
 const OrdersScreen = props => {
+    const orders = useSelector(state => state.orders.orders);
+
     var d = new Date();
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
@@ -27,6 +30,14 @@ const OrdersScreen = props => {
         dispatch(toggleOrderDetails(id, bool));
     };
 
+    if (orders.length === 0 || !orders) {
+        return (
+            <View style={styles.contentVoidOrders}>
+                <DefaultText>You don't have any orders.</DefaultText>
+            </View>
+        )
+    }
+
     return ( 
         <View style={styles.orderContainer}>
             <View style={styles.orderRow}>
@@ -35,9 +46,9 @@ const OrdersScreen = props => {
             </View>
             {isOrderExpanded ?
             <View style={styles.orderDetails}> 
-                <OrderItem
-                    item="test"
-                    price="22.99"
+                <OrderList 
+                    listData={orders}
+                    navigation={props.navigation} 
                 />
                 <View style={styles.buttonContainer}>
                     <MyButton
@@ -71,6 +82,11 @@ const OrdersScreen = props => {
 };
 
 const styles = StyleSheet.create({
+    contentVoidOrders: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     orderContainer: {
         borderWidth: 1,
         borderColor: Colors.primaryColor,

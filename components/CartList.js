@@ -12,7 +12,7 @@ const CartList = props => {
         dispatch(removeFromCart(productId));
     };
 
-    const renderProductItem = itemData => {
+    const renderCartItem = itemData => {
         //console.log(itemData.item.title);
         return (
             <CartItem 
@@ -33,7 +33,7 @@ const CartList = props => {
             <FlatList 
                 data={props.listData}
                 keyExtractor={(item, index) => item.id}
-                renderItem={renderProductItem}
+                renderItem={renderCartItem}
                 style={{width: '100%'}}
             />
         </View>

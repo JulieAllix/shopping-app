@@ -11,8 +11,8 @@ const OrderItem = props => {
 
     return ( 
         <View style={styles.cartContent}>
-            <Text style={styles.regular}>1 x</Text>
-            <Text style={{...styles.item, ...props.style}}>{props.item}</Text>
+            <Text style={styles.regular}>{props.qty} x</Text>
+            <Text style={{...styles.item, ...props.style}}>{props.title}</Text>
             <Text style={styles.regular}>{props.price}€</Text>
         </View>
     );
