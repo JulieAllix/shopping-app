@@ -1,6 +1,10 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const EMPTY_CART = 'EMPTY_CART';
+export const SET_TITLE = 'SET_TITLE';
+export const SET_PRICE = 'SET_PRICE';
+export const SET_DESCRIPTION = 'SET_DESCRIPTION';
+export const SET_IMAGE = 'SET_IMAGE';
 
 export const addToCart = (id) => {
     return { 
@@ -19,5 +23,33 @@ export const removeFromCart = (id) => {
 export const emptyCart = () => {
     return { 
         type: EMPTY_CART, 
+    };
+};
+
+export const setTitle = (value) => {
+    return { 
+        type: SET_TITLE, 
+        value: value,
+    };
+};
+
+export const setPrice = (value) => {
+    return { 
+        type: SET_PRICE, 
+        value: value,
+    };
+};
+
+export const setDescription = (value) => {
+    return { 
+        type: SET_DESCRIPTION, 
+        value: value,
+    };
+};
+
+export const setImageUrl = (value) => {
+    return { 
+        type: SET_IMAGE, 
+        value: value,
     };
 };

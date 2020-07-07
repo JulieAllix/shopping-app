@@ -1,54 +1,75 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { 
     View,
     Text,
     StyleSheet,
     TextInput,
 } from 'react-native';
+import { setTitle, setPrice, setDescription, setImageUrl } from '../store/actions/products';
 
 import Colors from '../constants/Colors';
 
 const EditUserProductsScreen = props => {
-    const inputHandler = (enteredText) => {
-        console.log('coucou');
+    const dispatch = useDispatch();
+
+    const titleInputHandler = (text) => {
+        dispatch(setTitle(text));
     };
+    const priceInputHandler = (text) => {
+        dispatch(setPrice(text));
+    };
+    const descriptionInputHandler = (text) => {
+        dispatch(setDescription(text));
+    };
+    const imageUrlInputHandler = (text) => {
+        dispatch(setimageUrl(text));
+    };
+    const titleInput = useSelector(state => state.products.title);
+    const priceInput = useSelector(state => state.products.price);
+    const descriptionInput = useSelector(state => state.products.description);
+    const imageUrlInput = useSelector(state => state.products.imageUrl);
 
     return ( 
         <View style={styles.inputsContainer}>
             <View style={styles.inputContainer}>
                 <Text style={styles.label}>Title</Text>
                 <TextInput 
+                    name="title"
                     placeholder="" 
                     style={styles.input} 
-                    onChangeText={inputHandler}
-                    value=""
+                    onChangeText={titleInputHandler}
+                    value={titleInput}
                 />
             </View>
             <View style={styles.inputContainer}>
                 <Text style={styles.label}>Price</Text>
                 <TextInput 
+                    name="price"
                     placeholder="" 
                     style={styles.input} 
-                    onChangeText={inputHandler}
-                    value=""
+                    onChangeText={priceInputHandler}
+                    value={priceInput}
                 />
             </View>
             <View style={styles.inputContainer}>
                 <Text style={styles.label}>Description</Text>
                 <TextInput 
+                    name="description"
                     placeholder="" 
                     style={styles.input} 
-                    onChangeText={inputHandler}
-                    value=""
+                    onChangeText={descriptionInputHandler}
+                    value={descriptionInput}
                 />
             </View>
             <View style={styles.inputContainer}>
                 <Text style={styles.label}>Image url</Text>
                 <TextInput 
+                    name="imageUrl"
                     placeholder="" 
                     style={styles.input} 
-                    onChangeText={inputHandler}
-                    value=""
+                    onChangeText={setImageUrl}
+                    value={imageUrlInputHandler}
                 />
             </View>
         </View>

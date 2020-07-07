@@ -2,7 +2,11 @@ import PRODUCTS from '../../data/dummy-data';
 import { 
     ADD_TO_CART, 
     REMOVE_FROM_CART, 
-    EMPTY_CART 
+    EMPTY_CART,
+    SET_TITLE,
+    SET_PRICE,
+    SET_DESCRIPTION,
+    SET_IMAGE,
 } from '../actions/products';
 
 const initialState = {
@@ -10,6 +14,10 @@ const initialState = {
     productsInCart: [],
     qtiesInCart: [],
     totalPrice: 0,
+    title: '',
+    price: '',
+    description: '',
+    imageUrl: '',
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -111,6 +119,26 @@ const productsReducer = (state = initialState, action) => {
                 ...state, 
                 productsInCart: [],
                 totalPrice: 0,
+            };
+        case SET_TITLE:
+            return {
+                ...state,
+                title: action.value,
+            };
+        case SET_PRICE:
+            return {
+                ...state,
+                price: action.value,
+            };
+        case SET_DESCRIPTION:
+            return {
+                ...state,
+                description: action.value,
+            };
+        case SET_IMAGE:
+            return {
+                ...state,
+                imageUrl: action.value,
             };
         default:
             return state;
