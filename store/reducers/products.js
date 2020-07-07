@@ -161,13 +161,13 @@ const productsReducer = (state = initialState, action) => {
                 price: parseInt(state.price),
                 qty: 1,
             };
-            console.log(newObject);
+           /*
             const updatedProductsList = [...state.availableProducts];
             updatedProductsList.splice(existingIndex, 1, newObject);
-
+*/
             return {
                 ...state,
-                availableProducts: updatedProductsList,
+                availableProducts: state.availableProducts.concat(newObject),
                 title: '',
                 price: '',
                 description: '',
