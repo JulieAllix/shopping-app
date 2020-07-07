@@ -154,7 +154,7 @@ const productsReducer = (state = initialState, action) => {
                 title: state.title,
                 imageUrl: state.imageUrl,
                 description: state.description,
-                price: state.price,
+                price: parseInt(state.price),
                 qty: 1,
             };
             const updatedProductsList = [...state.availableProducts];
