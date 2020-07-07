@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,6 +15,8 @@ import UserProductsOverviewScreen from '../screens/UserProductsOverviewScreen';
 
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
+
+import { createNewObject } from '../store/actions/products';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -118,6 +121,11 @@ const OrdersNavigator = ({ navigation }) => {
 };
 
 const ManageProductsNavigator = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const handleInputValidation = () => {
+        dispatch(createNewObject());
+    };
+    
     return (
         <Stack.Navigator
             initialRouteName="UserProductsOverview"
@@ -169,7 +177,8 @@ const ManageProductsNavigator = ({ navigation }) => {
                                 title="Check" 
                                 iconName="ios-checkmark-circle"
                                 onPress={() => {
-                                    navData.navigation.navigate('UserProductsOverview')
+                                    handleInputValidation();
+                                    navData.navigation.navigate('UserProductsOverview');
                                 }}
                             />
                         </HeaderButtons>

@@ -5,6 +5,7 @@ export const SET_TITLE = 'SET_TITLE';
 export const SET_PRICE = 'SET_PRICE';
 export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 export const SET_IMAGE = 'SET_IMAGE';
+export const CREATE_OBJECT = 'CREATE_OBJECT';
 
 export const addToCart = (id) => {
     return { 
@@ -53,3 +54,10 @@ export const setImageUrl = (value) => {
         value: value,
     };
 };
+
+export const createNewObject = () => {
+    return { 
+        type: CREATE_OBJECT, 
+    };
+};
+

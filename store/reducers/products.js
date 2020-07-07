@@ -7,6 +7,7 @@ import {
     SET_PRICE,
     SET_DESCRIPTION,
     SET_IMAGE,
+    CREATE_OBJECT,
 } from '../actions/products';
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
     price: '',
     description: '',
     imageUrl: '',
+    latestId: 'p6',
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -120,26 +122,54 @@ const productsReducer = (state = initialState, action) => {
                 productsInCart: [],
                 totalPrice: 0,
             };
+
         case SET_TITLE:
             return {
                 ...state,
                 title: action.value,
             };
+
         case SET_PRICE:
             return {
                 ...state,
                 price: action.value,
             };
+
         case SET_DESCRIPTION:
             return {
                 ...state,
                 description: action.value,
             };
+
         case SET_IMAGE:
             return {
                 ...state,
                 imageUrl: action.value,
             };
+
+        case CREATE_OBJECT:
+            const newObject = {
+                id: state.latestId + 1,
+                ownerId: 'u1',
+                title: state.title,
+                imageUrl: state.imageUrl,
+                description: state.description,
+                price: state.price,
+                qty: 1,
+            };
+            const updatedProductsList = [...state.availableProducts];
+            updatedProductsList.splice(existingIndex, 1, newObject);
+
+            return {
+                ...state,
+                availableProducts: updatedProductsList,
+                title: '',
+                price: '',
+                description: '',
+                imageUrl: '',
+                latestId: state.latestId + 1
+            };
+
         default:
             return state;
     }

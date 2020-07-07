@@ -23,7 +23,7 @@ const EditUserProductsScreen = props => {
         dispatch(setDescription(text));
     };
     const imageUrlInputHandler = (text) => {
-        dispatch(setimageUrl(text));
+        dispatch(setImageUrl(text));
     };
     const titleInput = useSelector(state => state.products.title);
     const priceInput = useSelector(state => state.products.price);
