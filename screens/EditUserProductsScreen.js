@@ -36,7 +36,6 @@ const EditUserProductsScreen = props => {
                 <Text style={styles.label}>Title</Text>
                 <TextInput 
                     name="title"
-                    placeholder="" 
                     style={styles.input} 
                     onChangeText={titleInputHandler}
                     value={titleInput}
@@ -46,7 +45,6 @@ const EditUserProductsScreen = props => {
                 <Text style={styles.label}>Price</Text>
                 <TextInput 
                     name="price"
-                    placeholder="" 
                     style={styles.input} 
                     onChangeText={priceInputHandler}
                     value={priceInput}
@@ -56,7 +54,6 @@ const EditUserProductsScreen = props => {
                 <Text style={styles.label}>Description</Text>
                 <TextInput 
                     name="description"
-                    placeholder="" 
                     style={styles.input} 
                     onChangeText={descriptionInputHandler}
                     value={descriptionInput}
@@ -66,7 +63,6 @@ const EditUserProductsScreen = props => {
                 <Text style={styles.label}>Image url</Text>
                 <TextInput 
                     name="imageUrl"
-                    placeholder="" 
                     style={styles.input} 
                     onChangeText={setImageUrl}
                     value={imageUrlInputHandler}
