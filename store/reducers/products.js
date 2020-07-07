@@ -124,24 +124,28 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case SET_TITLE:
+            console.log(action.value);
             return {
                 ...state,
                 title: action.value,
             };
 
         case SET_PRICE:
+            console.log(action.value);
             return {
                 ...state,
                 price: action.value,
             };
 
         case SET_DESCRIPTION:
+            console.log(action.value);
             return {
                 ...state,
                 description: action.value,
             };
 
         case SET_IMAGE:
+            console.log(action.value);
             return {
                 ...state,
                 imageUrl: action.value,
@@ -157,6 +161,7 @@ const productsReducer = (state = initialState, action) => {
                 price: parseInt(state.price),
                 qty: 1,
             };
+            console.log(newObject);
             const updatedProductsList = [...state.availableProducts];
             updatedProductsList.splice(existingIndex, 1, newObject);
 
