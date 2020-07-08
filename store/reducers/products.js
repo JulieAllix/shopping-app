@@ -19,7 +19,7 @@ const initialState = {
     price: '',
     description: '',
     imageUrl: '',
-    latestId: 'p6',
+    latestId: '6',
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -153,7 +153,7 @@ const productsReducer = (state = initialState, action) => {
 
         case CREATE_OBJECT:
             const newObject = {
-                id: state.latestId + 1,
+                id: 'p' + state.latestId + 1,
                 ownerId: 'u1',
                 title: state.title,
                 imageUrl: state.imageUrl,
@@ -161,10 +161,7 @@ const productsReducer = (state = initialState, action) => {
                 price: parseInt(state.price),
                 qty: 1,
             };
-           /*
-            const updatedProductsList = [...state.availableProducts];
-            updatedProductsList.splice(existingIndex, 1, newObject);
-*/
+
             return {
                 ...state,
                 availableProducts: state.availableProducts.concat(newObject),

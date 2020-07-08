@@ -5,39 +5,53 @@ import {
     StyleSheet
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from '../store/actions/products';
+
+import { 
+    addToCart, 
+    setTitle, 
+    setDescription, 
+    setImageUrl 
+} from '../store/actions/products';
 
 import ProductItem from './ProductItem';
 
 const ProductsList = props => {
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
+    
     const addToCartHandler = (productId) => {
         dispatch(addToCart(productId));
     };
-    const editHandler = (productId) => {
-        console.log('Click on edit !');
+
+    const editHandler = (productTitle, productDescription, productImageUrl) => {
+        dispatch(setTitle(productTitle));
+        dispatch(setDescription(productDescription));
+        dispatch(setImageUrl(productImageUrl));
     };
+
     const deleteHandler = (productId) => {
         console.log('Click on delete !');
     };
 
     const renderProductItem = (itemData) => {
         const productId = itemData.item.id;
+        const productTitle = itemData.item.title;
+        const productDescription = itemData.item.description;
+        const productImageUrl = itemData.item.imageUrl;
 
         return (
             <ProductItem
-                id={itemData.item.id}
-                title={itemData.item.title}
-                description={itemData.item.description}
+                id={productId}
+                title={productTitle}
+                description={productDescription}
                 price={itemData.item.price}
-                imageUrl={itemData.item.imageUrl}
+                imageUrl={productImageUrl}
                 screen={props.screen}
                 onSelectedItem={
                     () => {
                         props.navigation.navigate(
                             'ProductDetails', 
-                            {id: itemData.item.id}
+                            {id: productId}
                         );
                     }
                 }
@@ -45,7 +59,7 @@ const ProductsList = props => {
                     () => {
                         props.navigation.navigate(
                             'ProductDetails', 
-                            {id: itemData.item.id}
+                            {id: productId}
                         )
                     }
                 }
@@ -54,13 +68,14 @@ const ProductsList = props => {
                         addToCartHandler(productId);
                         props.navigation.navigate(
                             'Cart', 
-                            {id: itemData.item.id}
+                            {id: productId}
                         );
                     }
                 }
                 onClickOnEdit={
                     () => {
-                        editHandler(productId);
+                        editHandler(productTitle, productDescription, productImageUrl);
+                        props.navigation.navigate('Edit');
                     }
                 }
                 onClickOnDelete={
