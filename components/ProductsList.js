@@ -11,7 +11,8 @@ import {
     setTitle, 
     setDescription, 
     setImageUrl,
-    setPriceStatus
+    setPriceStatus,
+    setEditMode,
 } from '../store/actions/products';
 
 import ProductItem from './ProductItem';
@@ -24,11 +25,12 @@ const ProductsList = props => {
         dispatch(addToCart(productId));
     };
 
-    const editHandler = (productTitle, productDescription, productImageUrl) => {
+    const editHandler = (productTitle, productDescription, productImageUrl, productId) => {
         dispatch(setTitle(productTitle));
         dispatch(setDescription(productDescription));
         dispatch(setImageUrl(productImageUrl));
         dispatch(setPriceStatus(false));
+        dispatch(setEditMode(productId));
     };
 
     const deleteHandler = (productId) => {
@@ -76,7 +78,7 @@ const ProductsList = props => {
                 }
                 onClickOnEdit={
                     () => {
-                        editHandler(productTitle, productDescription, productImageUrl);
+                        editHandler(productTitle, productDescription, productImageUrl, productId);
                         props.navigation.navigate('Edit');
                     }
                 }

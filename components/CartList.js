@@ -13,7 +13,6 @@ const CartList = props => {
     };
 
     const renderCartItem = itemData => {
-        //console.log(itemData.item.title);
         return (
             <CartItem 
                 id={itemData.item.id}

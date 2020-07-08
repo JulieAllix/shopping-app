@@ -10,6 +10,8 @@ import {
     CREATE_OBJECT,
     SET_PRICE_STATUS,
     ADD_PRODUCT,
+    SET_EDIT_MODE,
+    EDIT_PRODUCT,
 } from '../actions/products';
 
 const initialState = {
@@ -23,6 +25,8 @@ const initialState = {
     imageUrl: '',
     latestId: '6',
     priceStatus: true,
+    editMode: false,
+    editProductId: '',
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -127,28 +131,24 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case SET_TITLE:
-            console.log(action.value);
             return {
                 ...state,
                 title: action.value,
             };
 
         case SET_PRICE:
-            console.log(action.value);
             return {
                 ...state,
                 price: action.value,
             };
 
         case SET_DESCRIPTION:
-            console.log(action.value);
             return {
                 ...state,
                 description: action.value,
             };
 
         case SET_IMAGE:
-            console.log(action.value);
             return {
                 ...state,
                 imageUrl: action.value,
@@ -185,11 +185,46 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 title: '',
-                //price: '',
                 description: '',
                 imageUrl: '',
-                priceStatus: true
+                priceStatus: true,
+                editMode: false,
+                editProductId: '',
             };
+
+        case SET_EDIT_MODE:
+            return {
+                ...state,
+                editMode: true,
+                editProductId: action.productId,
+            };
+
+        case EDIT_PRODUCT:
+            const productToEdit = state.availableProducts.find(product => product.id === state.editProductId);
+            const productToEditIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
+
+            const updatedProduct = {
+                id: state.editProductId,
+                ownerId: productToEdit.ownerId,
+                title: state.title,
+                imageUrl: state.imageUrl,
+                description: state.description,
+                price: productToEdit.price,
+                qty: 1,
+            };
+
+            const updatedProductInCart = [...state.availableProducts];
+            updatedProductInCart.splice(productToEditIndex, 1, updatedProduct);
+
+            return {
+                ...state,
+                availableProducts: updatedProductInCart,
+                title: '',
+                price: '',
+                description: '',
+                imageUrl: '',
+            };
+
         default:
             return state;
     }

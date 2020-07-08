@@ -8,6 +8,8 @@ export const SET_IMAGE = 'SET_IMAGE';
 export const CREATE_OBJECT = 'CREATE_OBJECT';
 export const SET_PRICE_STATUS = 'SET_PRICE_STATUS';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const SET_EDIT_MODE = 'SET_EDIT_MODE';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 export const addToCart = (id) => {
     return { 
@@ -75,5 +77,21 @@ export const addProduct = () => {
         type: ADD_PRODUCT, 
     };
 };
+
+export const setEditMode = (id) => {
+    return { 
+        type: SET_EDIT_MODE, 
+        productId: id,
+    };
+};
+
+export const editProduct = (id) => {
+    return { 
+        type: EDIT_PRODUCT, 
+        productId: id,
+    };
+};
+
+
 
 

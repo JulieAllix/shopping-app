@@ -16,7 +16,7 @@ import UserProductsOverviewScreen from '../screens/UserProductsOverviewScreen';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 
-import { createNewObject, addProduct } from '../store/actions/products';
+import { createNewObject, addProduct, editProduct } from '../store/actions/products';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -121,14 +121,19 @@ const OrdersNavigator = ({ navigation }) => {
 };
 
 const ManageProductsNavigator = ({ navigation }) => {
+    const editProductid = useSelector(state => state.products.editProductId);
     const dispatch = useDispatch();
-    const handleInputValidation = () => {
-        dispatch(createNewObject());
-    };
-    const handleAddButton = () => {
+    const addHandler = () => {
         dispatch(addProduct());
     };
-    
+    const handleInputValidation = () => {
+        if (editProductid === '') {
+            dispatch(createNewObject());
+        } else {
+            dispatch(editProduct(editProductid));
+        }
+    };
+
     return (
         <Stack.Navigator
             initialRouteName="UserProductsOverview"
@@ -147,7 +152,7 @@ const ManageProductsNavigator = ({ navigation }) => {
                                 title="Add" 
                                 iconName="ios-add-circle"
                                 onPress={() => {
-                                    handleAddButton();
+                                    addHandler();
                                     navData.navigation.navigate('Edit')
                                 }}
                             />
