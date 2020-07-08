@@ -26,7 +26,6 @@ const ProductsList = props => {
 
     const editHandler = (productTitle, productDescription, productImageUrl) => {
         dispatch(setTitle(productTitle));
-        dispatch(setImageUrl(productImageUrl));
         dispatch(setDescription(productDescription));
         dispatch(setImageUrl(productImageUrl));
         dispatch(setPriceStatus(false));

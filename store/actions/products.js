@@ -7,7 +7,7 @@ export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 export const SET_IMAGE = 'SET_IMAGE';
 export const CREATE_OBJECT = 'CREATE_OBJECT';
 export const SET_PRICE_STATUS = 'SET_PRICE_STATUS';
-
+export const ADD_PRODUCT = 'ADD_PRODUCT';
 
 export const addToCart = (id) => {
     return { 
@@ -69,4 +69,11 @@ export const setPriceStatus = (bool) => {
         status: bool,
     };
 };
+
+export const addProduct = () => {
+    return { 
+        type: ADD_PRODUCT, 
+    };
+};
+
 

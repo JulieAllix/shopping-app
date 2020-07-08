@@ -16,7 +16,7 @@ import UserProductsOverviewScreen from '../screens/UserProductsOverviewScreen';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 
-import { createNewObject } from '../store/actions/products';
+import { createNewObject, addProduct } from '../store/actions/products';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -125,6 +125,9 @@ const ManageProductsNavigator = ({ navigation }) => {
     const handleInputValidation = () => {
         dispatch(createNewObject());
     };
+    const handleAddButton = () => {
+        dispatch(addProduct());
+    };
     
     return (
         <Stack.Navigator
@@ -144,6 +147,7 @@ const ManageProductsNavigator = ({ navigation }) => {
                                 title="Add" 
                                 iconName="ios-add-circle"
                                 onPress={() => {
+                                    handleAddButton();
                                     navData.navigation.navigate('Edit')
                                 }}
                             />
