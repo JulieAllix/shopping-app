@@ -8,6 +8,7 @@ import {
     SET_DESCRIPTION,
     SET_IMAGE,
     CREATE_OBJECT,
+    SET_PRICE_STATUS,
 } from '../actions/products';
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
     description: '',
     imageUrl: '',
     latestId: '6',
+    priceStatus: true,
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -172,6 +174,11 @@ const productsReducer = (state = initialState, action) => {
                 latestId: state.latestId + 1
             };
 
+        case SET_PRICE_STATUS:
+            return {
+                ...state,
+                priceStatus: action.status
+            };
         default:
             return state;
     }

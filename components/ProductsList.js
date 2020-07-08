@@ -10,7 +10,8 @@ import {
     addToCart, 
     setTitle, 
     setDescription, 
-    setImageUrl 
+    setImageUrl,
+    setPriceStatus
 } from '../store/actions/products';
 
 import ProductItem from './ProductItem';
@@ -18,15 +19,17 @@ import ProductItem from './ProductItem';
 const ProductsList = props => {
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
-    
+
     const addToCartHandler = (productId) => {
         dispatch(addToCart(productId));
     };
 
     const editHandler = (productTitle, productDescription, productImageUrl) => {
         dispatch(setTitle(productTitle));
+        dispatch(setImageUrl(productImageUrl));
         dispatch(setDescription(productDescription));
         dispatch(setImageUrl(productImageUrl));
+        dispatch(setPriceStatus(false));
     };
 
     const deleteHandler = (productId) => {

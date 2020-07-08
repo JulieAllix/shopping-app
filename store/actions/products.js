@@ -6,6 +6,8 @@ export const SET_PRICE = 'SET_PRICE';
 export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 export const SET_IMAGE = 'SET_IMAGE';
 export const CREATE_OBJECT = 'CREATE_OBJECT';
+export const SET_PRICE_STATUS = 'SET_PRICE_STATUS';
+
 
 export const addToCart = (id) => {
     return { 
@@ -58,6 +60,13 @@ export const setImageUrl = (value) => {
 export const createNewObject = () => {
     return { 
         type: CREATE_OBJECT, 
+    };
+};
+
+export const setPriceStatus = (bool) => {
+    return { 
+        type: SET_PRICE_STATUS, 
+        status: bool,
     };
 };
 

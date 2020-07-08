@@ -29,6 +29,7 @@ const EditUserProductsScreen = props => {
     const priceInput = useSelector(state => state.products.price);
     const descriptionInput = useSelector(state => state.products.description);
     const imageUrlInput = useSelector(state => state.products.imageUrl);
+    const priceStatus = useSelector(state => state.products.priceStatus);
 
     return ( 
         <View style={styles.inputsContainer}>
@@ -41,6 +42,7 @@ const EditUserProductsScreen = props => {
                     value={titleInput}
                 />
             </View>
+            {priceStatus === true ?
             <View style={styles.inputContainer}>
                 <Text style={styles.label}>Price</Text>
                 <TextInput 
@@ -50,6 +52,10 @@ const EditUserProductsScreen = props => {
                     value={priceInput}
                 />
             </View>
+            :
+            <View style={styles.inputContainer}>
+            </View>
+            }
             <View style={styles.inputContainer}>
                 <Text style={styles.label}>Description</Text>
                 <TextInput 
@@ -90,6 +96,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'noto',
         color: Colors.primaryColor
+    },
+    labelNotEditable: {
+        width: '35%',
+        fontSize: 18,
+        fontFamily: 'noto',
+        color: 'grey'
     },
     input: {
         width: '63%', 
