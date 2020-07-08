@@ -13,6 +13,7 @@ import {
     setImageUrl,
     setPriceStatus,
     setEditMode,
+    deleteProduct,
 } from '../store/actions/products';
 
 import ProductItem from './ProductItem';
@@ -34,7 +35,7 @@ const ProductsList = props => {
     };
 
     const deleteHandler = (productId) => {
-        console.log('Click on delete !');
+        dispatch(deleteProduct(productId));
     };
 
     const renderProductItem = (itemData) => {

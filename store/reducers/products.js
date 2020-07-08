@@ -12,6 +12,7 @@ import {
     ADD_PRODUCT,
     SET_EDIT_MODE,
     EDIT_PRODUCT,
+    DELETE_PRODUCT,
 } from '../actions/products';
 
 const initialState = {
@@ -223,6 +224,17 @@ const productsReducer = (state = initialState, action) => {
                 price: '',
                 description: '',
                 imageUrl: '',
+            };
+
+        case DELETE_PRODUCT:
+            const productToDeleteIndex = state.availableProducts.findIndex(product => product.id === action.productId);
+
+            const updatedProductsList = [...state.availableProducts];
+            updatedProductsList.splice(productToDeleteIndex, 1);
+
+            return { 
+                ...state, 
+                availableProducts: updatedProductsList,
             };
 
         default:

@@ -10,6 +10,7 @@ export const SET_PRICE_STATUS = 'SET_PRICE_STATUS';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const SET_EDIT_MODE = 'SET_EDIT_MODE';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 export const addToCart = (id) => {
     return { 
@@ -88,6 +89,13 @@ export const setEditMode = (id) => {
 export const editProduct = (id) => {
     return { 
         type: EDIT_PRODUCT, 
+        productId: id,
+    };
+};
+
+export const deleteProduct = (id) => {
+    return { 
+        type: DELETE_PRODUCT, 
         productId: id,
     };
 };
