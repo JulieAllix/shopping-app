@@ -123,7 +123,6 @@ const ProductsList = props => {
 
 const styles = StyleSheet.create({
     list: {
-        flex: 1,
         padding: 10,
     }
 });

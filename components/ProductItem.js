@@ -17,32 +17,18 @@ import MyButton from './MyButton';
 
 const ProductItem = props => { 
     let orientation = useSelector(state => state.screen.orientation);
+    let screenWidth = useSelector(state => state.screen.width);
     let numColumns;
-    /*
-    const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
 
-    useEffect(() => {
-        const updateLayout = () => {
-            setScreenWidth(Dimensions.get('window').width);
-        };
-    
-        Dimensions.addEventListener('change', updateLayout);
-        
-        return () => {
-            Dimensions.removeEventListener('change', updateLayout);
-        };
-    });
-*/
     let TouchableCmp = TouchableOpacity;
     if (Platform.OS === 'android') {
         TouchableCmp = TouchableNativeFeedback;
     }
 
-
     return (
         <View style={{
             ...styles.shopItem, 
-            width: orientation === 'vertical' ? '95%' : '47%',
+            width: orientation === 'vertical' ? screenWidth*0.5 : screenWidth*0.8,
         }}>
             <TouchableCmp 
                 onPress={props.onSelectedItem}

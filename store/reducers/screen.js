@@ -1,9 +1,21 @@
+import { Dimensions } from 'react-native';
+
 import { 
-    SET_SCREEN_ORIENTATION,
+    SET_SCREEN_ORIENTATION
 } from '../actions/screen';
 
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+let orientation = '';
+if (screenWidth > screenHeight) {
+    orientation = 'horizontal';
+} else {
+    orientation = 'vertical';
+};
+
 const initialState = {
-    orientation: 'vertical',
+    orientation: orientation,
+    width: screenHeight,
 };
 
 const screenReducer = (state = initialState, action) => {
@@ -12,6 +24,7 @@ const screenReducer = (state = initialState, action) => {
             return { 
                 ...state, 
                 orientation: action.orientation,
+                width: action.width,
             };
         default:
             return state;

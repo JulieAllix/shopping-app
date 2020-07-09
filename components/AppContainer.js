@@ -1,25 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
 
-import { setScreenOrientation } from '../store/actions/screen';
+import { setScreenOrientation, setScreenWidth } from '../store/actions/screen';
 
 import ShopNavigator from '../navigation/ShopNavigator';
 
 const AppContainer = props => {
-    const [orientation, setOrientation] = useState('vertical');
+    
+    const [orientation, setOrientation] = useState();
+    const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
 
     useEffect(() => {
         const updateLayout = () => {
             const screenWidth = Dimensions.get('window').width;
             const screenHeight = Dimensions.get('window').height;
-            let orientation = '';
+            let newOrientation;
             if (screenWidth > screenHeight) {
-                orientation = 'horizontal';
+                newOrientation = 'horizontal';
             } else {
-                orientation = 'vertical';
+                newOrientation = 'vertical';
             };
-            setOrientation(orientation);
+            setOrientation(newOrientation);
+            setScreenWidth(screenWidth);
             saveDirection();
         };
     
@@ -31,10 +34,9 @@ const AppContainer = props => {
     });
 
     const dispatch = useDispatch();
-
+    dispatch(setScreenOrientation(orientation, screenWidth));
     const saveDirection = useCallback(() => {
-        console.log(orientation);
-        dispatch(setScreenOrientation(orientation));
+        dispatch(setScreenOrientation(orientation, screenWidth));
     }, [orientation]);
 
     return ( 
