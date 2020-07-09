@@ -37,18 +37,20 @@ const ProductDetailsScreen = ({ route, navigation }) => {
             <View style={styles.infoContainer}>
                 <Text style={styles.price}>{selectedProduct.price}€</Text>
                 <DefaultText>{selectedProduct.description}</DefaultText>
-                <MyButton
-                    onPress={
-                    () => {
-                        addToCartHandler(productId);
-                        navigation.navigate(
-                            'Cart'
-                        );
+                <View style={styles.buttonContainer}>
+                    <MyButton
+                        onPress={
+                        () => {
+                            addToCartHandler(productId);
+                            navigation.navigate(
+                                'Cart'
+                            );
+                        }
                     }
-                }
-                >
-                    Add to cart
-                </MyButton>
+                    >
+                        Add to cart
+                    </MyButton>
+                </View>
             </View>
         </ScrollView>
     );
@@ -56,14 +58,13 @@ const ProductDetailsScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,   
+        flex: 1,  
     },
     image: {
         width: '100%',
         height: 200
     },
     infoContainer: {
-        height: '70%',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginVertical: 10,
@@ -73,7 +74,12 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         color: Colors.accentColor,
+        marginTop: 20,
+        marginBottom: 50,
     },
+    buttonContainer: {
+        marginTop: 50,
+    }
 });
 
 export default ProductDetailsScreen;

@@ -3,7 +3,8 @@ import {
     Dimensions, 
     Text, 
     TouchableOpacity, 
-    StyleSheet 
+    StyleSheet,
+    Platform
 } from 'react-native';
 
 import Colors from '../constants/Colors';
