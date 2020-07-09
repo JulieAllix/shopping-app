@@ -5,6 +5,7 @@ import {
     Text,
     StyleSheet,
     TextInput,
+    ScrollView,
 } from 'react-native';
 import { setTitle, setPrice, setDescription, setImageUrl } from '../store/actions/products';
 
@@ -32,49 +33,51 @@ const EditUserProductsScreen = props => {
     const priceStatus = useSelector(state => state.products.priceStatus);
 
     return ( 
-        <View style={styles.inputsContainer}>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Title</Text>
-                <TextInput 
-                    name="title"
-                    style={styles.input} 
-                    onChangeText={titleInputHandler}
-                    value={titleInput}
-                />
+        <ScrollView>
+            <View style={styles.inputsContainer}>
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Title</Text>
+                    <TextInput 
+                        name="title"
+                        style={styles.input} 
+                        onChangeText={titleInputHandler}
+                        value={titleInput}
+                    />
+                </View>
+                {priceStatus === true ?
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Price</Text>
+                    <TextInput 
+                        name="price"
+                        style={styles.input} 
+                        onChangeText={priceInputHandler}
+                        value={priceInput}
+                    />
+                </View>
+                :
+                <View style={styles.inputContainer}>
+                </View>
+                }
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Description</Text>
+                    <TextInput 
+                        name="description"
+                        style={styles.input} 
+                        onChangeText={descriptionInputHandler}
+                        value={descriptionInput}
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <Text style={styles.label}>Image url</Text>
+                    <TextInput 
+                        name="imageUrl"
+                        style={styles.input} 
+                        onChangeText={imageUrlInputHandler}
+                        value={imageUrlInput}
+                    />
+                </View>
             </View>
-            {priceStatus === true ?
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Price</Text>
-                <TextInput 
-                    name="price"
-                    style={styles.input} 
-                    onChangeText={priceInputHandler}
-                    value={priceInput}
-                />
-            </View>
-            :
-            <View style={styles.inputContainer}>
-            </View>
-            }
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Description</Text>
-                <TextInput 
-                    name="description"
-                    style={styles.input} 
-                    onChangeText={descriptionInputHandler}
-                    value={descriptionInput}
-                />
-            </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Image url</Text>
-                <TextInput 
-                    name="imageUrl"
-                    style={styles.input} 
-                    onChangeText={imageUrlInputHandler}
-                    value={imageUrlInput}
-                />
-            </View>
-        </View>
+        </ScrollView>
     );
 };
 
