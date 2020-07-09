@@ -9,12 +9,16 @@ import {
     TouchableOpacity,
     TouchableNativeFeedback,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import SubtitleText from './SubtitleText';
 import DefaultText from './DefaultText';
 import MyButton from './MyButton';
 
 const ProductItem = props => { 
+    let orientation = useSelector(state => state.screen.orientation);
+    let numColumns;
+    /*
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
 
     useEffect(() => {
@@ -28,7 +32,7 @@ const ProductItem = props => {
             Dimensions.removeEventListener('change', updateLayout);
         };
     });
-
+*/
     let TouchableCmp = TouchableOpacity;
     if (Platform.OS === 'android') {
         TouchableCmp = TouchableNativeFeedback;
@@ -38,7 +42,7 @@ const ProductItem = props => {
     return (
         <View style={{
             ...styles.shopItem, 
-            width: screenWidth < 400 ? '95%' : '47%',
+            width: orientation === 'vertical' ? '95%' : '47%',
         }}>
             <TouchableCmp 
                 onPress={props.onSelectedItem}
@@ -46,7 +50,7 @@ const ProductItem = props => {
                 <View>
                     <View style={{
                         ...styles.itemRow, 
-                        height: screenWidth < 400 ? '64%' : '50%',
+                        height: orientation === 'vertical' ? '64%' : '50%',
                         }}>
                         <ImageBackground 
                             source={{uri: props.imageUrl}} 
@@ -69,9 +73,9 @@ const ProductItem = props => {
                     <View style={{
                         ...styles.itemRow, 
                         ...styles.itemButtons,
-                        flexDirection: screenWidth < 400 ? 'row' : 'column',
-                        marginTop: screenWidth < 400 ? 0 : 15,
-                        height: screenWidth < 400 ? '18%' : '25%',
+                        flexDirection: orientation === 'vertical' ? 'row' : 'column',
+                        marginTop: orientation === 'vertical' ? 0 : 15,
+                        height: orientation === 'vertical' ? '18%' : '25%',
                         }}>
                         <MyButton
                          onPress={props.onClickOnDetails}
@@ -85,7 +89,13 @@ const ProductItem = props => {
                         </MyButton>
                     </View>
                     : 
-                    <View style={{...styles.itemRow, ...styles.itemButtons}}>
+                    <View style={{
+                        ...styles.itemRow, 
+                        ...styles.itemButtons,
+                        flexDirection: orientation === 'vertical' ? 'row' : 'column',
+                        marginTop: orientation === 'vertical' ? 0 : 15,
+                        height: orientation === 'vertical' ? '18%' : '25%',
+                        }}>
                         <MyButton
                          onPress={props.onClickOnEdit}
                         >
@@ -138,7 +148,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         justifyContent: 'space-around',
         alignItems: 'center',
-        //height: '18%'
     },
 });
 

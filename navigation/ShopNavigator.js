@@ -199,6 +199,7 @@ const ManageProductsNavigator = ({ navigation }) => {
 };
 
 const MainNavigator = () => {
+
     return (
         <NavigationContainer>
             <Drawer.Navigator

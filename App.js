@@ -1,5 +1,6 @@
 //import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -7,14 +8,19 @@ import { Provider } from 'react-redux';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
-import ShopNavigator from './navigation/ShopNavigator';
+//import ShopNavigator from './navigation/ShopNavigator';
+import AppContainer from './components/AppContainer';
+
 import productsReducer from './store/reducers/products';
 import ordersReducer from './store/reducers/orders';
+import screenReducer from './store/reducers/screen';
 
+//import setScreenWidth from './store/actions/screen';
 
 const rootReducer = combineReducers({
   products: productsReducer,
   orders: ordersReducer,
+  screen: screenReducer,
 });
  
 const store = createStore(rootReducer);
@@ -43,7 +49,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-        <ShopNavigator />
+        <AppContainer />
     </Provider>
   );
 }

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
-    Dimensions,
     View, 
     FlatList, 
     StyleSheet
@@ -20,23 +19,11 @@ import {
 import ProductItem from './ProductItem';
 
 const ProductsList = props => {
-    const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
 
-    useEffect(() => {
-        const updateLayout = () => {
-            setScreenWidth(Dimensions.get('window').width);
-        };
-    
-        Dimensions.addEventListener('change', updateLayout);
-        
-        return () => {
-            Dimensions.removeEventListener('change', updateLayout);
-        };
-    });
-
+    let orientation = useSelector(state => state.screen.orientation);
     let numColumns;
 
-    if (screenWidth < 400){
+    if (orientation === 'vertical') {
         numColumns = 1;
     } else {
         numColumns = 2;
