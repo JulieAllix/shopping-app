@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
+    Dimensions,
     View, 
     FlatList, 
     StyleSheet
@@ -19,6 +20,28 @@ import {
 import ProductItem from './ProductItem';
 
 const ProductsList = props => {
+    const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setScreenWidth(Dimensions.get('window').width);
+        };
+    
+        Dimensions.addEventListener('change', updateLayout);
+        
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout);
+        };
+    });
+
+    let numColumns;
+
+    if (screenWidth < 400){
+        numColumns = 1;
+    } else {
+        numColumns = 2;
+    };
+
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
 
@@ -94,11 +117,18 @@ const ProductsList = props => {
     return (
         <View style={styles.list}>
             <FlatList 
+                key={numColumns}
                 data={props.listData}
                 keyExtractor={(item, index) => item.id}
                 renderItem={renderProductItem}
-                style={{width: '100%'}}
+                contentContainerStyle={
+                    {width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    }
+                }
                 screen={props.screen}
+                numColumns={numColumns}
             />
         </View>
     )
@@ -107,9 +137,7 @@ const ProductsList = props => {
 const styles = StyleSheet.create({
     list: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 15,
+        padding: 10,
     }
 });
 

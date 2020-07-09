@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
+    Dimensions,
     View, 
     Text,
     ImageBackground,
@@ -13,26 +14,50 @@ import SubtitleText from './SubtitleText';
 import DefaultText from './DefaultText';
 import MyButton from './MyButton';
 
-const ProductItem = props => {  
+const ProductItem = props => { 
+    const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setScreenWidth(Dimensions.get('window').width);
+        };
+    
+        Dimensions.addEventListener('change', updateLayout);
+        
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout);
+        };
+    });
+
     let TouchableCmp = TouchableOpacity;
     if (Platform.OS === 'android') {
         TouchableCmp = TouchableNativeFeedback;
     }
 
+
     return (
-        <View style={styles.shopItem}>
+        <View style={{
+            ...styles.shopItem, 
+            width: screenWidth < 400 ? '95%' : '47%',
+        }}>
             <TouchableCmp 
                 onPress={props.onSelectedItem}
             >
                 <View>
-                    <View style={{...styles.itemRow, ...styles.itemHeader}}>
+                    <View style={{
+                        ...styles.itemRow, 
+                        height: screenWidth < 400 ? '64%' : '50%',
+                        }}>
                         <ImageBackground 
                             source={{uri: props.imageUrl}} 
                             style={styles.bgImage}
                         >
                         </ImageBackground>
                     </View>
-                    <View style={{...styles.itemColumn, ...styles.itemDetail}}> 
+                    <View style={{
+                        ...styles.itemColumn, 
+                        ...styles.itemDetail
+                        }}> 
                         <SubtitleText     
                             numberOfLines={1}
                         >
@@ -41,7 +66,13 @@ const ProductItem = props => {
                         <DefaultText>{props.price}€</DefaultText>
                     </View>
                     {props.screen === "Products" ?
-                    <View style={{...styles.itemRow, ...styles.itemButtons}}>
+                    <View style={{
+                        ...styles.itemRow, 
+                        ...styles.itemButtons,
+                        flexDirection: screenWidth < 400 ? 'row' : 'column',
+                        marginTop: screenWidth < 400 ? 0 : 15,
+                        height: screenWidth < 400 ? '18%' : '25%',
+                        }}>
                         <MyButton
                          onPress={props.onClickOnDetails}
                         >
@@ -77,12 +108,12 @@ const ProductItem = props => {
 
 const styles = StyleSheet.create({
     shopItem: {
-        height: 320,
-        width: '95%',
+        height: 340,
         backgroundColor: 'white',
         borderRadius: 10,
         overflow: 'hidden',
         marginVertical: 10,
+        marginHorizontal: 10,
         elevation: 5,
     },
     bgImage: {
@@ -96,9 +127,6 @@ const styles = StyleSheet.create({
     itemColumn: {
         flexDirection: 'column',
     },
-    itemHeader: {
-        height: '64%'
-    },
     itemDetail: {
         paddingHorizontal: 10,
         justifyContent: 'space-between',
@@ -110,7 +138,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '18%'
+        //height: '18%'
     },
 });
 

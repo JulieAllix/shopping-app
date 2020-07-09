@@ -10,11 +10,11 @@ import {
 import Colors from '../constants/Colors';
 
 const MyButton = props => {
-    const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 3);
+    const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 3.4);
 
     useEffect(() => {
         const updateLayout = () => {
-            setButtonWidth(Dimensions.get('window').width / 3);
+            setButtonWidth(Dimensions.get('window').width / 3.4);
         };
     
         Dimensions.addEventListener('change', updateLayout);
@@ -36,14 +36,14 @@ const MyButton = props => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: Colors.accentColor,
-        padding: Dimensions.get('window').width < 400 ? 5 : 10,
+        padding: Dimensions.get('window').width < 400 ? 5 : 8,
         marginVertical: 10,
         borderRadius: 5,
     },
     text: {
         color: 'white',
         textAlign: 'center',
-        fontSize: Dimensions.get('window').width < 400 ? 18 : 22,
+        fontSize: Dimensions.get('window').width < 400 ? 18 : 20,
     },
 });
 
