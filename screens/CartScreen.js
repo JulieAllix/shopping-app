@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+    ScrollView,
     View,
     StyleSheet,
     Text,
@@ -35,20 +36,22 @@ const CartScreen = props => {
     }
 
     return ( 
-        <View style={styles.contentFullCart}>
-            <View style={styles.cartHeader}>
-                <DefaultText>Total sum : {totalPrice} €</DefaultText>
-                <MyButton
-                    onPress={handleOrderButton}
-                >
-                    Order
-                </MyButton>
+        <ScrollView>
+            <View style={styles.contentFullCart}>
+                <View style={styles.cartHeader}>
+                    <DefaultText>Total sum : {totalPrice} €</DefaultText>
+                    <MyButton
+                        onPress={handleOrderButton}
+                    >
+                        Order
+                    </MyButton>
+                </View>
+                <CartList 
+                    listData={cartItems}
+                    navigation={props.navigation} 
+                />
             </View>
-            <CartList 
-                listData={cartItems}
-                navigation={props.navigation} 
-            />
-        </View>
+        </ScrollView>
     );
 };
 
@@ -60,13 +63,14 @@ const styles = StyleSheet.create({
     },
     contentFullCart: {
         flex: 1,
+        marginHorizontal: 10,
+        marginBottom: 15,
     },
     cartHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 10,
-        marginHorizontal: 15,
+        marginVertical: 15,
     },
 });
 
