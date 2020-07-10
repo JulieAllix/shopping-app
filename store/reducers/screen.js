@@ -15,7 +15,7 @@ if (screenWidth > screenHeight) {
 
 const initialState = {
     orientation: orientation,
-    width: screenHeight,
+    width: screenWidth,
 };
 
 const screenReducer = (state = initialState, action) => {

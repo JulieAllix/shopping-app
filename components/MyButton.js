@@ -17,7 +17,7 @@ const MyButton = props => {
     return (
         <TouchableOpacity style={{
             ...styles.button, 
-            width: orientation === 'vertical' ? screenWidth / 6 : screenWidth / 2.5,
+            width: orientation === 'vertical' ? screenWidth / 3 : screenWidth / 4.5,
             padding: orientation === 'vertical' ? 7 : 6,
             }} onPress={props.onPress}>
             <Text style={{

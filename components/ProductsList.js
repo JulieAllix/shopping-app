@@ -22,7 +22,8 @@ const ProductsList = props => {
 
     let orientation = useSelector(state => state.screen.orientation);
     let numColumns;
-
+    console.log('orientation');
+    console.log(orientation);
     if (orientation === 'vertical') {
         numColumns = 1;
     } else if (orientation === 'horizontal') {

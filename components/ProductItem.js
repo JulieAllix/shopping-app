@@ -28,7 +28,7 @@ const ProductItem = props => {
     return (
         <View style={{
             ...styles.shopItem, 
-            width: orientation === 'vertical' ? screenWidth*0.5 : screenWidth*0.8,
+            width: orientation === 'vertical' ? screenWidth*0.95 : screenWidth*0.45,
         }}>
             <TouchableCmp 
                 onPress={props.onSelectedItem}

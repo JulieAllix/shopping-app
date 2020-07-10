@@ -13,17 +13,17 @@ const AppContainer = props => {
 
     useEffect(() => {
         const updateLayout = () => {
-            const screenWidth = Dimensions.get('window').width;
-            const screenHeight = Dimensions.get('window').height;
+            const newScreenWidth = Dimensions.get('window').width;
+            const newScreenHeight = Dimensions.get('window').height;
             let newOrientation;
-            if (screenWidth > screenHeight) {
+            if (newScreenWidth > newScreenHeight) {
                 newOrientation = 'horizontal';
             } else {
                 newOrientation = 'vertical';
             };
             setOrientation(newOrientation);
-            setScreenWidth(screenWidth);
-            saveDirection();
+            setScreenWidth(newScreenWidth);
+            saveDirection(newOrientation, newScreenWidth);
         };
     
         Dimensions.addEventListener('change', updateLayout);
@@ -35,8 +35,8 @@ const AppContainer = props => {
 
     const dispatch = useDispatch();
     //dispatch(setScreenOrientation(orientation, screenWidth));
-    const saveDirection = useCallback(() => {
-        dispatch(setScreenOrientation(orientation, screenWidth));
+    const saveDirection = useCallback((newOrientation, newScreenWidth) => {
+        dispatch(setScreenOrientation(newOrientation, newScreenWidth));
     }, [orientation]);
 
     return ( 
