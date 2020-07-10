@@ -21,7 +21,6 @@ const AppContainer = props => {
             } else {
                 newOrientation = 'vertical';
             };
-            console.log('useEffect setOrientation')
             setOrientation(newOrientation);
             setScreenWidth(screenWidth);
             saveDirection();

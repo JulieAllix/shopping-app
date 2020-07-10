@@ -36,7 +36,7 @@ const ProductItem = props => {
                 <View>
                     <View style={{
                         ...styles.itemRow, 
-                        height: orientation === 'vertical' ? '64%' : '50%',
+                        height: orientation === 'vertical' ? '64%' : '49%',
                         }}>
                         <ImageBackground 
                             source={{uri: props.imageUrl}} 
@@ -61,7 +61,7 @@ const ProductItem = props => {
                         ...styles.itemButtons,
                         flexDirection: orientation === 'vertical' ? 'row' : 'column',
                         marginTop: orientation === 'vertical' ? 0 : 15,
-                        height: orientation === 'vertical' ? '18%' : '25%',
+                        height: orientation === 'vertical' ? '18%' : '27%',
                         }}>
                         <MyButton
                          onPress={props.onClickOnDetails}
@@ -80,7 +80,7 @@ const ProductItem = props => {
                         ...styles.itemButtons,
                         flexDirection: orientation === 'vertical' ? 'row' : 'column',
                         marginTop: orientation === 'vertical' ? 0 : 15,
-                        height: orientation === 'vertical' ? '18%' : '25%',
+                        height: orientation === 'vertical' ? '18%' : '27%',
                         }}>
                         <MyButton
                          onPress={props.onClickOnEdit}

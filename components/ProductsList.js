@@ -21,7 +21,6 @@ import ProductItem from './ProductItem';
 const ProductsList = props => {
 
     let orientation = useSelector(state => state.screen.orientation);
-    //let orientation = 'vertical';
     let numColumns;
 
     if (orientation === 'vertical') {
