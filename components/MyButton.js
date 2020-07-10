@@ -18,11 +18,11 @@ const MyButton = props => {
         <TouchableOpacity style={{
             ...styles.button, 
             width: orientation === 'vertical' ? screenWidth / 3 : screenWidth / 4.5,
-            padding: orientation === 'vertical' ? 7 : 6,
+            padding: orientation === 'vertical' ? 7 : 5,
             }} onPress={props.onPress}>
             <Text style={{
                 ...styles.text,
-                fontSize: orientation === 'vertical' ? 18 : 20,
+                fontSize: orientation === 'vertical' ? 18 : 16,
             }}>
                 {props.children}
             </Text>
