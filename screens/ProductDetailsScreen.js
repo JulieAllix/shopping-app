@@ -16,8 +16,7 @@ import Colors from '../constants/Colors';
 
 const ProductDetailsScreen = ({ route, navigation }) => {
     const availableProducts = useSelector(state => state.products.availableProducts);
-    const { id } = route.params;
-    const productId = JSON.parse(JSON.stringify(id));
+    const productId = JSON.parse(JSON.stringify(route.params.id));
     const selectedProduct = availableProducts.find(product => product.id === productId);
 
     React.useLayoutEffect(() => {
