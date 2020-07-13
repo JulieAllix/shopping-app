@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 import Colors from '../constants/Colors';
-import DefaultText from '../components/DefaultText';
 
 const CartItem = props => {
     const qtiesData = useSelector(state => state.products.qtiesInCart);
