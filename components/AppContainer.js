@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Dimensions } from 'react-native';
 
 import { setScreenOrientation, setScreenWidth } from '../store/actions/screen';
@@ -34,7 +34,6 @@ const AppContainer = props => {
     });
 
     const dispatch = useDispatch();
-    //dispatch(setScreenOrientation(orientation, screenWidth));
     const saveDirection = useCallback((newOrientation, newScreenWidth) => {
         dispatch(setScreenOrientation(newOrientation, newScreenWidth));
     }, [orientation]);
