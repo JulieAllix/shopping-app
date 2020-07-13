@@ -13,6 +13,9 @@ import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
 import CartList from '../components/CartList';
 
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
+
 const CartScreen = props => {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.products.productsInCart);
