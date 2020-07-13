@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

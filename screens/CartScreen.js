@@ -3,12 +3,8 @@ import {
     ScrollView,
     View,
     StyleSheet,
-    Text,
-    FlatList,
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { FontAwesome5 } from '@expo/vector-icons'; 
+import { useSelector, useDispatch } from 'react-redux'; 
 
 import { createOrder } from '../store/actions/orders';
 import { emptyCart } from '../store/actions/products';
