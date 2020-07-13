@@ -34,12 +34,14 @@ const initialState = {
 const productsReducer = (state = initialState, action) => {
     
     const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
-    
+    const formerTotalPrice = (Math.round((parseFloat(state.totalPrice))*100))/100;
+
     switch (action.type) {
         case ADD_TO_CART:
             const productToAdd = state.availableProducts.find(product => product.id === action.productId);
             const productPrice = productToAdd.price;
-            const newTotalPrice = state.totalPrice + productPrice;
+            
+            const newTotalPrice = (formerTotalPrice + productPrice).toString();
             
             /*
             If the product is already in the cart, I update the quantity and the total price only
@@ -86,7 +88,7 @@ const productsReducer = (state = initialState, action) => {
             const productToRemove = state.productsInCart.find(product => product.id === action.productId);
 
             const formerQty = productToRemove.qty;
-            const decreasedTotalPrice = state.totalPrice - productToRemove.price;
+            const decreasedTotalPrice = (formerTotalPrice - productToRemove.price).toString();
 
             /*
             If the product was in the cart in only one quantity, I remove the product from the cart and update the total price 

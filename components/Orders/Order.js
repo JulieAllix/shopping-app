@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { toggleOrderDetails } from '../../store/actions/orders';
 
-import OrderItem from './OrderItem';
 import OrderItemsList from './OrderItemsList';
 
 import MyButton from '../MyButton';
