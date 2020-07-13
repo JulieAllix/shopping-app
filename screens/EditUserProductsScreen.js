@@ -100,12 +100,6 @@ const styles = StyleSheet.create({
         fontFamily: 'noto',
         color: Colors.primaryColor
     },
-    labelNotEditable: {
-        width: '35%',
-        fontSize: 18,
-        fontFamily: 'noto',
-        color: 'grey'
-    },
     input: {
         width: '63%', 
         borderColor: Colors.primaryColor, 
