@@ -1,10 +1,9 @@
 import React from 'react';
 import { 
     View,
-    Text,
     StyleSheet
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import OrdersList from '../components/Orders/OrdersList';
 import DefaultText from '../components/DefaultText';
