@@ -6,7 +6,7 @@ import {
     Text
 } from 'react-native';
 
-import ProductsList from '../components/ProductsList';
+import ProductsList from '../components/Products/ProductsList';
 
 const UserProductsOverviewScreen = ({ navigation }) => {
     const availableProducts = useSelector(state => state.products.availableProducts);

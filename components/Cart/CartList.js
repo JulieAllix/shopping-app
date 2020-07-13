@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../store/actions/products';
+import { removeFromCart } from '../../store/actions/products';
 
 import CartItem from './CartItem';
 

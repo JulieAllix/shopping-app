@@ -11,7 +11,7 @@ import { emptyCart } from '../store/actions/products';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
-import CartList from '../components/CartList';
+import CartList from '../components/Cart/CartList';
 
 import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);

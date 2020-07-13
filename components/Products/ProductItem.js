@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import SubtitleText from './SubtitleText';
-import DefaultText from './DefaultText';
-import MyButton from './MyButton';
+import SubtitleText from '../SubtitleText';
+import DefaultText from '../DefaultText';
+import MyButton from '../MyButton';
 
 const ProductItem = props => { 
     let orientation = useSelector(state => state.screen.orientation);

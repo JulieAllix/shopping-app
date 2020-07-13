@@ -10,7 +10,7 @@ import {
     addToCart, 
     deleteProduct,
     setProductInfo
-} from '../store/actions/products';
+} from '../../store/actions/products';
 
 import ProductItem from './ProductItem';
 
