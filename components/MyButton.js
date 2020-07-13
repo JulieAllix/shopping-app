@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { 
-    Dimensions, 
+import React from 'react';
+import {  
     Text, 
     TouchableOpacity, 
     StyleSheet,
-    Platform
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
