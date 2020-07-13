@@ -53,7 +53,7 @@ const ProductItem = props => {
                         </SubtitleText>
                         <DefaultText>{props.price}€</DefaultText>
                     </View>
-                    
+                    {props.screen === "Products" ?
                     <View style={{
                         ...styles.itemRow, 
                         ...styles.itemButtons,
@@ -61,33 +61,39 @@ const ProductItem = props => {
                         marginTop: orientation === 'vertical' ? 0 : 15,
                         height: orientation === 'vertical' ? '18%' : '27%',
                         }}>
-                        {props.screen === "Products" ?
                         <MyButton
                          onPress={props.onClickOnDetails}
                         >
                             Details
                         </MyButton>
-                        :
-                        <MyButton
-                         onPress={props.onClickOnEdit}
-                        >
-                            Edit
-                        </MyButton>
-                        }
-                        {props.screen === "Products" ?
                         <MyButton
                             onPress={props.onClickOnCart}
                         >
                             Add to cart
                         </MyButton>
-                        :
+                    </View>
+                    : 
+                    <View style={{
+                        ...styles.itemRow, 
+                        ...styles.itemButtons,
+                        flexDirection: orientation === 'vertical' ? 'row' : 'column',
+                        marginTop: orientation === 'vertical' ? 0 : 15,
+                        height: orientation === 'vertical' ? '18%' : '27%',
+                        }}>
+                        <MyButton
+                         onPress={props.onClickOnEdit}
+                        >
+                            Edit
+                        </MyButton>
+                    
                         <MyButton
                             onPress={props.onClickOnDelete}
                         >
                             Delete
                         </MyButton>
-                        }
                     </View>
+                    }
+                    
                 </View>
             </TouchableCmp>
         </View>  
