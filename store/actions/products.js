@@ -1,6 +1,7 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const EMPTY_CART = 'EMPTY_CART';
+export const SET_PRODUCT_INFO = 'SET_PRODUCT_INFO';
 export const SET_TITLE = 'SET_TITLE';
 export const SET_PRICE = 'SET_PRICE';
 export const SET_DESCRIPTION = 'SET_DESCRIPTION';
@@ -29,6 +30,17 @@ export const removeFromCart = (id) => {
 export const emptyCart = () => {
     return { 
         type: EMPTY_CART, 
+    };
+};
+
+export const setProductInfo = (title, description, imageUrl, bool, productId) => {
+    return { 
+        type: SET_PRODUCT_INFO, 
+        title,
+        description, 
+        imageUrl,
+        status: bool,
+        productId
     };
 };
 

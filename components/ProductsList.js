@@ -8,12 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { 
     addToCart, 
-    setTitle, 
-    setDescription, 
-    setImageUrl,
-    setPriceStatus,
-    setEditMode,
     deleteProduct,
+    setProductInfo
 } from '../store/actions/products';
 
 import ProductItem from './ProductItem';
@@ -21,28 +17,24 @@ import ProductItem from './ProductItem';
 const ProductsList = props => {
 
     let orientation = useSelector(state => state.screen.orientation);
+    let cartItems = useSelector(state => state.products.productsInCart);
+    const dispatch = useDispatch();
+
     let numColumns;
-    console.log('orientation');
-    console.log(orientation);
+
     if (orientation === 'vertical') {
         numColumns = 1;
     } else if (orientation === 'horizontal') {
         numColumns = 2;
     };
 
-    let cartItems = useSelector(state => state.products.productsInCart);
-    const dispatch = useDispatch();
-
     const addToCartHandler = (productId) => {
         dispatch(addToCart(productId));
     };
 
     const editHandler = (productTitle, productDescription, productImageUrl, productId) => {
-        dispatch(setTitle(productTitle));
-        dispatch(setDescription(productDescription));
-        dispatch(setImageUrl(productImageUrl));
-        dispatch(setPriceStatus(false));
-        dispatch(setEditMode(productId));
+        // This action sends the product info to pre-fill the inputs and removes the price input
+        dispatch(setProductInfo(productTitle, productDescription, productImageUrl, false, productId));
     };
 
     const deleteHandler = (productId) => {
@@ -50,24 +42,20 @@ const ProductsList = props => {
     };
 
     const renderProductItem = (itemData) => {
-        const productId = itemData.item.id;
-        const productTitle = itemData.item.title;
-        const productDescription = itemData.item.description;
-        const productImageUrl = itemData.item.imageUrl;
 
         return (
             <ProductItem
-                id={productId}
-                title={productTitle}
-                description={productDescription}
+                id={itemData.item.id}
+                title={itemData.item.title}
+                description={itemData.item.description}
                 price={itemData.item.price}
-                imageUrl={productImageUrl}
+                imageUrl={itemData.item.imageUrl}
                 screen={props.screen}
                 onSelectedItem={
                     () => {
                         props.navigation.navigate(
                             'ProductDetails', 
-                            {id: productId}
+                            {id: itemData.item.id}
                         );
                     }
                 }
@@ -75,28 +63,33 @@ const ProductsList = props => {
                     () => {
                         props.navigation.navigate(
                             'ProductDetails', 
-                            {id: productId}
+                            {id: itemData.item.id}
                         )
                     }
                 }
                 onClickOnCart={
                     () => {
-                        addToCartHandler(productId);
+                        addToCartHandler(itemData.item.id);
                         props.navigation.navigate(
                             'Cart', 
-                            {id: productId}
+                            {id: itemData.item.id}
                         );
                     }
                 }
                 onClickOnEdit={
                     () => {
-                        editHandler(productTitle, productDescription, productImageUrl, productId);
+                        editHandler(
+                            itemData.item.title, 
+                            itemData.item.description, 
+                            itemData.item.imageUrl,
+                            itemData.item.id
+                        );
                         props.navigation.navigate('Edit');
                     }
                 }
                 onClickOnDelete={
                     () => {
-                        deleteHandler(productId);
+                        deleteHandler(itemData.item.id);
                     }
                 }
             />
@@ -109,12 +102,11 @@ const ProductsList = props => {
                 data={props.listData}
                 keyExtractor={(item, index) => item.id}
                 renderItem={renderProductItem}
-                contentContainerStyle={
-                    {width: '100%',
+                contentContainerStyle={{
+                    width: '100%',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    }
-                }
+                }}
                 screen={props.screen}
                 numColumns={numColumns}
             />

@@ -3,6 +3,7 @@ import {
     ADD_TO_CART, 
     REMOVE_FROM_CART, 
     EMPTY_CART,
+    SET_PRODUCT_INFO,
     SET_TITLE,
     SET_PRICE,
     SET_DESCRIPTION,
@@ -129,6 +130,17 @@ const productsReducer = (state = initialState, action) => {
                 ...state, 
                 productsInCart: [],
                 totalPrice: 0,
+            };
+
+        case SET_PRODUCT_INFO:
+            return {
+                ...state,
+                title: action.title,
+                description: action.description,
+                imageUrl: action.imageUrl,
+                priceStatus: action.status,
+                editMode: true,
+                editProductId: action.productId,
             };
 
         case SET_TITLE:
