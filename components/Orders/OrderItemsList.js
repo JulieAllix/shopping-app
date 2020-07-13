@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
 
 import OrderItem from './OrderItem';
 
