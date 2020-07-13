@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
         fontFamily: 'noto',
         textAlign: 'center',
         marginHorizontal: 10,
-        
         color: Colors.primaryColor
     }
 });
