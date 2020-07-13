@@ -103,6 +103,10 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 10,
         elevation: 5,
+        shadowColor: 'black',
+        shadowOpacity: 0.26,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 8,
     },
     bgImage: {
         width: '100%',
