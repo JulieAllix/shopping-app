@@ -3,29 +3,33 @@ import {
     ScrollView,
     View,
     StyleSheet,
-    Text
+    Text,
+    FlatList
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'; 
 
 import { createOrder } from '../store/actions/orders';
-import { emptyCart } from '../store/actions/products';
+import { removeFromCart, emptyCart } from '../store/actions/products';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
-import CartList from '../components/Cart/CartList';
+import CartItem from '../components/Cart/CartItem';
 
 import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 const CartScreen = props => {
     const dispatch = useDispatch();
+
     const cartItems = useSelector(state => state.products.productsInCart);
-    //const totalPriceBeforeFix = useSelector(state => state.products.totalPrice);
-    //const totalPrice= totalPriceBeforeFix.toFixed(2);
     const totalPrice = useSelector(state => state.products.totalPrice);
+
     const handleOrderButton = () => {
         dispatch(createOrder(cartItems, totalPrice));
         dispatch(emptyCart());
+    };
+    const removeFromCartHandler = (productId) => {
+        dispatch(removeFromCart(productId));
     };
 
     if (cartItems.length === 0 || !cartItems) {
@@ -35,6 +39,22 @@ const CartScreen = props => {
             </View>
         )
     }
+
+    const renderCartItem = itemData => {
+        return (
+            <CartItem 
+                id={itemData.item.id}
+                item={itemData.item.title} 
+                price={itemData.item.price} 
+                qty={itemData.item.qty} 
+                onClickOnTrash={
+                    () => {
+                        removeFromCartHandler(itemData.item.id);
+                    }
+                }
+            />
+        );
+    };
 
     return ( 
         <ScrollView>
@@ -47,9 +67,11 @@ const CartScreen = props => {
                         Order
                     </MyButton>
                 </View>
-                <CartList 
-                    listData={cartItems}
-                    navigation={props.navigation} 
+                <FlatList 
+                    data={cartItems}
+                    keyExtractor={(item, index) => item.id}
+                    renderItem={renderCartItem}
+                    style={{width: '100%'}}
                 />
             </View>
         </ScrollView>
