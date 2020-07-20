@@ -34,7 +34,7 @@ const ProductDetailsScreen = ({ route, navigation }) => {
         <ScrollView style={styles.screen}>
             <Image source={{uri: selectedProduct.imageUrl}} style={styles.image} />
             <View style={styles.infoContainer}>
-                <Text style={styles.price}>{selectedProduct.price}€</Text>
+                <Text style={styles.price}>{selectedProduct.price.toFixed(2)}€</Text>
                 <DefaultText>{selectedProduct.description}</DefaultText>
                 <View style={styles.buttonContainer}>
                     <MyButton

@@ -3,6 +3,7 @@ import {
     ScrollView,
     View,
     StyleSheet,
+    Text
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'; 
 
@@ -19,8 +20,9 @@ YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 const CartScreen = props => {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.products.productsInCart);
+    //const totalPriceBeforeFix = useSelector(state => state.products.totalPrice);
+    //const totalPrice= totalPriceBeforeFix.toFixed(2);
     const totalPrice = useSelector(state => state.products.totalPrice);
-
     const handleOrderButton = () => {
         dispatch(createOrder(cartItems, totalPrice));
         dispatch(emptyCart());
@@ -38,7 +40,7 @@ const CartScreen = props => {
         <ScrollView>
             <View style={styles.contentFullCart}>
                 <View style={styles.cartHeader}>
-                    <DefaultText>Total sum : {totalPrice} €</DefaultText>
+                    <DefaultText>Total sum : <Text style={styles.amount}>{totalPrice.toFixed(2)}€</Text></DefaultText>
                     <MyButton
                         onPress={handleOrderButton}
                     >
@@ -71,6 +73,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical: 15,
     },
+    amount: {
+        fontSize: 20,
+    }
 });
 
 export default CartScreen;

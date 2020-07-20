@@ -51,7 +51,7 @@ const ProductItem = props => {
                         >
                             {props.title}
                         </SubtitleText>
-                        <DefaultText>{props.price}€</DefaultText>
+                        <DefaultText>{props.price.toFixed(2)}€</DefaultText>
                     </View>
                     
                     <View style={{
