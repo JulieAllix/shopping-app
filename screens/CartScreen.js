@@ -13,7 +13,7 @@ import { removeFromCart, emptyCart } from '../store/actions/products';
 
 import MyButton from '../components/MyButton';
 import DefaultText from '../components/DefaultText';
-import CartItem from '../components/Cart/CartItem';
+import CartItem from '../components/CartItem';
 
 import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
