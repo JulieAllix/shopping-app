@@ -16,38 +16,24 @@ const Order = props => {
                 <DefaultText>{props.sum.toFixed(2)}€</DefaultText>
                 <Text style={styles.date}>{props.date}</Text>
             </View>
-            {showDetails ?
+            {showDetails && (
             <View style={styles.orderDetails}> 
                 <OrderItemsList
                     order={props.content}
-                />
-                <View style={styles.buttonContainer}>
-                    <MyButton
-                        onPress={
-                            () => {
-                                setShowDetails(prevState => !prevState);
-                            }
-                        }
-                    >
-                        Close
-                    </MyButton>
-                </View> 
+                /> 
             </View> 
-            : 
-            <View>
-                <View style={styles.buttonContainer}>
-                    <MyButton
-                        onPress={
-                            () => {
-                                setShowDetails(prevState => !prevState);
-                            }
+            )}
+            <View style={styles.buttonContainer}>
+                <MyButton
+                    onPress={
+                        () => {
+                            setShowDetails(prevState => !prevState);
                         }
-                    >
-                        Show Details
-                    </MyButton>
-                </View>
+                    }
+                >
+                    {showDetails ? 'Hide Details' : 'Show Details'}
+                </MyButton>
             </View>
-            }
         </View>
     );
 };
