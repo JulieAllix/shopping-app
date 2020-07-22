@@ -3,6 +3,8 @@ import {
     CREATE_ORDER 
 } from '../actions/orders';
 
+import Order from '../../models/order';
+
 const initialState = {
     orders: [],
     lastId: 0,
@@ -30,20 +32,19 @@ const ordersReducer = (state = initialState, action) => {
             };
 
         case CREATE_ORDER:
+            const newOrder = new Order(
+                state.lastId + 1,
+                false,
+                action.cartItems,
+                action.totalPrice,
+                new Date()
+              );
+              return {
+                ...state,
+                orders: state.orders.concat(newOrder),
+                lastId: state.lastId + 1
+              };
 
-            const order = {
-                id: state.lastId + 1,
-                expandOrder: false,
-                sum: action.totalPrice,
-                content: action.cartItems,
-                date: new Date().toString(),
-            }
-
-            return { 
-                ...state, 
-                orders: state.orders.concat(order),
-                lastId: state.lastId + 1,
-            };
         default:
             return state;
     }

@@ -11,10 +11,7 @@ import Colors from '../../constants/Colors';
 import DefaultText from '../DefaultText';
 
 const Order = props => {
-    const orderId = props.order.item.id;
-    var d = new Date();
-    const fullDate = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
-
+    const orderId = props.id;
     const ordersList = useSelector(state => state.orders.orders);
     const currentOrder = ordersList.find(order => order.id === orderId);
     const isOrderExpanded = currentOrder.expandOrder;
@@ -27,13 +24,13 @@ const Order = props => {
     return (
         <View style={styles.orderContainer}>
             <View style={styles.orderRow}>
-                <DefaultText>Sum: {props.order.item.sum.toFixed(2)}€</DefaultText>
-                <DefaultText>Date: {props.order.item.date}</DefaultText>
+                <DefaultText>{props.sum.toFixed(2)}€</DefaultText>
+                <DefaultText>{props.date}</DefaultText>
             </View>
             {isOrderExpanded ?
             <View style={styles.orderDetails}> 
                 <OrderItemsList
-                    order={props.order.item.content}
+                    order={props.content}
                 />
                 <View style={styles.buttonContainer}>
                     <MyButton
@@ -57,7 +54,7 @@ const Order = props => {
                             }
                         }
                     >
-                        More
+                        Show Details
                     </MyButton>
                 </View>
             </View>
@@ -68,13 +65,6 @@ const Order = props => {
 
 const styles = StyleSheet.create({
     orderContainer: {
-        /*
-        borderWidth: 3,
-        borderColor: Colors.accentColor,
-        borderRadius: 5,
-        margin: 15,
-        padding: 10,
-        */
         elevation: 5,
         shadowColor: 'black',
         shadowOpacity: 0.26,

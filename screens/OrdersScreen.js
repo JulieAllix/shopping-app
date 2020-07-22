@@ -1,11 +1,12 @@
 import React from 'react';
 import { 
     View,
-    StyleSheet
+    StyleSheet,
+    FlatList
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import OrdersList from '../components/Orders/OrdersList';
+import Order from '../components/Orders/Order';
 import DefaultText from '../components/DefaultText';
 
 const OrdersScreen = props => {
@@ -20,9 +21,18 @@ const OrdersScreen = props => {
     }
 
     return ( 
-        <OrdersList 
-            listData={orders}
-            navigation={props.navigation} 
+        <FlatList 
+            data={orders}
+            keyExtractor={(item, index) => item.id}
+            renderItem={itemData => (
+                <Order 
+                    id={itemData.item.id}
+                    sum={itemData.item.sum}
+                    date={itemData.item.readableDate}
+                    content={itemData.item.content}
+                />
+            )}
+            style={{width: '100%'}}
         />
     );
 };
