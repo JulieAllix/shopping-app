@@ -4,7 +4,6 @@ import {
 } from '../actions/orders';
 
 const initialState = {
-    //expandOrder: false,
     orders: [],
     lastId: 0,
 };
@@ -29,6 +28,7 @@ const ordersReducer = (state = initialState, action) => {
                 ...state, 
                 orders: updatedOrder,
             };
+
         case CREATE_ORDER:
 
             const order = {
@@ -36,6 +36,7 @@ const ordersReducer = (state = initialState, action) => {
                 expandOrder: false,
                 sum: action.totalPrice,
                 content: action.cartItems,
+                date: new Date().toString(),
             }
 
             return { 

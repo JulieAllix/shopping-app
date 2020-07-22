@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Platform } from 'react-native';
@@ -16,6 +17,8 @@ import UserProductsOverviewScreen from '../screens/UserProductsOverviewScreen';
 
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
+
+import { Ionicons } from '@expo/vector-icons';
 
 import { createNewObject, addProduct, editProduct } from '../store/actions/products';
 
@@ -96,6 +99,7 @@ const OrdersNavigator = ({ navigation }) => {
         <Stack.Navigator
             initialRouteName="Orders"
             screenOptions={defaultStackNavOptions}
+
         >
             <Stack.Screen 
                 name="Orders" 
@@ -213,10 +217,28 @@ const MainNavigator = () => {
                 <Drawer.Screen 
                     name="Shop" 
                     component={ShopNavigator} 
+                    options={{
+                        drawerIcon: drawerConfig => (
+                            <Ionicons
+                                name={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+                                size={23}
+                                color={drawerConfig.color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen 
                     name="Orders" 
                     component={OrdersNavigator} 
+                    options={{
+                        drawerIcon: drawerConfig => (
+                            <Ionicons
+                                name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+                                size={23}
+                                color={drawerConfig.color}
+                            />
+                        )
+                    }}
                 />
                 <Drawer.Screen 
                     name="Products" 
