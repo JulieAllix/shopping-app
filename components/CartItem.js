@@ -17,7 +17,7 @@ const CartItem = props => {
         <View style={styles.cartContent}>
             <Text style={styles.regular}>{props.qty} x</Text>
             <Text style={{...styles.item, ...props.style}}>{props.item}</Text>
-            <Text style={styles.regular}>{props.price}€</Text>
+            <Text style={styles.regular}>{props.price*props.qty}€</Text>
             <FontAwesome5   
                 name="trash" 
                 size={24} 
