@@ -30,6 +30,7 @@ const OrdersScreen = props => {
                     sum={itemData.item.sum}
                     date={itemData.item.readableDate}
                     content={itemData.item.content}
+                    isOrderExpanded={itemData.item.expandOrder}
                 />
             )}
             style={{width: '100%'}}

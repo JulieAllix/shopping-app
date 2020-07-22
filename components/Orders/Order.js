@@ -1,8 +1,5 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { toggleOrderDetails } from '../../store/actions/orders';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 
 import OrderItemsList from './OrderItemsList';
 
@@ -11,23 +8,15 @@ import Colors from '../../constants/Colors';
 import DefaultText from '../DefaultText';
 
 const Order = props => {
-    const orderId = props.id;
-    const ordersList = useSelector(state => state.orders.orders);
-    const currentOrder = ordersList.find(order => order.id === orderId);
-    const isOrderExpanded = currentOrder.expandOrder;
-
-    const dispatch = useDispatch();
-    const buttonHandler = (id, bool) => {
-        dispatch(toggleOrderDetails(id, bool));
-    };
+    const [showDetails, setShowDetails] = useState(false);
 
     return (
         <View style={styles.orderContainer}>
             <View style={styles.orderRow}>
                 <DefaultText>{props.sum.toFixed(2)}€</DefaultText>
-                <DefaultText>{props.date}</DefaultText>
+                <Text style={styles.date}>{props.date}</Text>
             </View>
-            {isOrderExpanded ?
+            {showDetails ?
             <View style={styles.orderDetails}> 
                 <OrderItemsList
                     order={props.content}
@@ -36,7 +25,7 @@ const Order = props => {
                     <MyButton
                         onPress={
                             () => {
-                                buttonHandler(orderId, false);
+                                setShowDetails(prevState => !prevState);
                             }
                         }
                     >
@@ -50,7 +39,7 @@ const Order = props => {
                     <MyButton
                         onPress={
                             () => {
-                                buttonHandler(orderId, true);
+                                setShowDetails(prevState => !prevState);
                             }
                         }
                     >
@@ -74,6 +63,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 20,
         padding: 10,
+    },
+    date: {
+        color: 'grey',
     },
     orderRow: {
         flexDirection: 'row',
