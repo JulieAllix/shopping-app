@@ -243,6 +243,15 @@ const MainNavigator = () => {
                 <Drawer.Screen 
                     name="Products" 
                     component={ManageProductsNavigator} 
+                    options={{
+                        drawerIcon: drawerConfig => (
+                            <Ionicons
+                                name={Platform.OS === 'android' ? 'md-item' : 'ios-item'}
+                                size={23}
+                                color={drawerConfig.color}
+                            />
+                        )
+                    }}
                 />
             </Drawer.Navigator>
         </NavigationContainer>

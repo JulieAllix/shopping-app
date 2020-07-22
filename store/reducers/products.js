@@ -128,11 +128,7 @@ const productsReducer = (state = initialState, action) => {
             }
 
         case EMPTY_CART:
-            return { 
-                ...state, 
-                productsInCart: [],
-                totalPrice: 0,
-            };
+            return initialState;
 
         case SET_PRODUCT_INFO:
             return {
