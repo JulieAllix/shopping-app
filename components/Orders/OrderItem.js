@@ -13,7 +13,7 @@ const OrderItem = props => {
         <View style={styles.cartContent}>
             <Text style={styles.regular}>{props.qty} x</Text>
             <Text style={{...styles.item, ...props.style}}>{props.title}</Text>
-            <Text style={styles.regular}>{props.price}€</Text>
+            <Text style={styles.regular}>{props.price * props.qty}€</Text>
         </View>
     );
 };
