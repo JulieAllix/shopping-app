@@ -237,14 +237,14 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case DELETE_PRODUCT:
-            const productToDeleteIndex = state.availableProducts.findIndex(product => product.id === action.productId);
+            const productToDeleteIndex = state.userProducts.findIndex(product => product.id === action.productId);
 
-            const updatedProductsList = [...state.availableProducts];
+            const updatedProductsList = [...state.userProducts];
             updatedProductsList.splice(productToDeleteIndex, 1);
 
             return { 
                 ...state, 
-                availableProducts: updatedProductsList,
+                userProducts: updatedProductsList,
             };
 
         default:
