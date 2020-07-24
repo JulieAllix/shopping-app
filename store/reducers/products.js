@@ -237,13 +237,35 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case DELETE_PRODUCT:
-            return { 
-                ...state, 
-                userProducts: state.userProducts.filter(
+            if (!state.productsInCart.find(product => product.id === action.productId)) {
+                return {
+                    ...state, 
+                    userProducts: state.userProducts.filter(
                     product => product.id !== action.productId
-                ),
-            };
+                    ),
+                    availableProducts: state.availableProducts.filter(
+                    product => product.id !== action.productId
+                    )
+                }
+            } else {
+                const removedProduct = state.productsInCart.find(product => product.id === action.productId);
+                const itemTotalPrice = removedProduct.qty * removedProduct.price;
 
+                return { 
+                    ...state, 
+                    userProducts: state.userProducts.filter(
+                    product => product.id !== action.productId
+                    ),
+                    availableProducts: state.availableProducts.filter(
+                    product => product.id !== action.productId
+                    ),
+                    productsInCart: state.productsInCart.filter(
+                    product => product.id !== action.productId
+                    ),
+                    totalPrice: state.totalPrice - itemTotalPrice
+                };
+            };
+        
         default:
             return state;
     }
