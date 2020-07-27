@@ -181,8 +181,8 @@ const ManageProductsNavigator = ({ navigation }) => {
             <Stack.Screen 
                 name="Edit" 
                 component={EditUserProductsScreen}
-                options={(navData) => ({ 
-                    title: 'Edit Products',
+                options={(navData, route) => ({ 
+                    title: editProductid ? 'Edit Products' : 'Add Product',
                     headerRight: () => (
                         <HeaderButtons
                         HeaderButtonComponent={HeaderButton}
