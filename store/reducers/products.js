@@ -212,7 +212,6 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case EDIT_PRODUCT:
-            const productToEdit = state.userProducts.find(product => product.id === state.editProductId);
             const productToEditIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
             const userProductToEditIndex = state.userProducts.findIndex(product => product.id === state.editProductId);
 
@@ -222,7 +221,7 @@ const productsReducer = (state = initialState, action) => {
                 title: state.title,
                 imageUrl: state.imageUrl,
                 description: state.description,
-                price: productToEdit.price,
+                price: state.userProducts[userProductToEditIndex].price,
                 qty: 1,
             };
 
