@@ -2,7 +2,8 @@ import React from 'react';
 import { 
     View, 
     FlatList, 
-    StyleSheet
+    StyleSheet,
+    Alert,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -40,9 +41,25 @@ const ProductsList = props => {
         // This action sends the product info to pre-fill the inputs and removes the price input
         dispatch(setProductInfo(productTitle, productDescription, productImageUrl, false, productId));
     };
-
+/*
     const deleteHandler = (productId) => {
         dispatch(deleteProduct(productId));
+    };
+*/
+    const deleteHandler = (productId) => {
+        Alert.alert(
+            'Are you sure ?',
+            'Do you really want to delete this item ?',
+            [
+                {text: 'No', style: 'default'},
+                {
+                    text: 'Yes', 
+                    style: 'destructive', 
+                    onPress: () => {
+                    dispatch(deleteProduct(productId));
+                    }
+                }
+            ]);
     };
 
     const renderProductItem = (itemData) => {

@@ -26,6 +26,7 @@ const EditUserProductsScreen = props => {
     const imageUrlInputHandler = (text) => {
         dispatch(setImageUrl(text));
     };
+
     const titleInput = useSelector(state => state.products.title);
     const priceInput = useSelector(state => state.products.price);
     const descriptionInput = useSelector(state => state.products.description);
