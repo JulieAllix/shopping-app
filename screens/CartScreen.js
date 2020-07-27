@@ -60,7 +60,7 @@ const CartScreen = props => {
         <ScrollView>
             <View style={styles.contentFullCart}>
                 <View style={styles.cartHeader}>
-                    <DefaultText>Total sum : <Text style={styles.amount}>{totalPrice.toFixed(2)}€</Text></DefaultText>
+                    <DefaultText>Total sum : <Text style={styles.amount}>{Math.round(totalPrice.toFixed(2) * 100) / 100}€</Text></DefaultText>
                     <MyButton
                         onPress={handleOrderButton}
                     >
