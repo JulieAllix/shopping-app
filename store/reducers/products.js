@@ -140,7 +140,7 @@ const productsReducer = (state = initialState, action) => {
                 editMode: true,
                 editProductId: action.productId,
             };
-
+ 
         case SET_TITLE:
             return {
                 ...state,
@@ -179,6 +179,7 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 availableProducts: state.availableProducts.concat(newObject),
+                userProducts: state.userProducts.concat(newObject),
                 title: '',
                 price: '',
                 description: '',
@@ -211,12 +212,13 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case EDIT_PRODUCT:
-            const productToEdit = state.availableProducts.find(product => product.id === state.editProductId);
+            const productToEdit = state.userProducts.find(product => product.id === state.editProductId);
             const productToEditIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
+            const userProductToEditIndex = state.userProducts.findIndex(product => product.id === state.editProductId);
 
             const updatedProduct = {
                 id: state.editProductId,
-                ownerId: productToEdit.ownerId,
+                ownerId: 'u1',
                 title: state.title,
                 imageUrl: state.imageUrl,
                 description: state.description,
@@ -224,12 +226,15 @@ const productsReducer = (state = initialState, action) => {
                 qty: 1,
             };
 
-            const updatedProductInCart = [...state.availableProducts];
-            updatedProductInCart.splice(productToEditIndex, 1, updatedProduct);
+            const updatedProducts = [...state.availableProducts];
+            updatedProducts.splice(productToEditIndex, 1, updatedProduct);
+            const updatedUserProducts = [...state.userProducts];
+            updatedUserProducts.splice(userProductToEditIndex, 1, updatedProduct);
 
             return {
                 ...state,
-                availableProducts: updatedProductInCart,
+                availableProducts: updatedProducts,
+                userProducts: updatedUserProducts,
                 title: '',
                 price: '',
                 description: '',

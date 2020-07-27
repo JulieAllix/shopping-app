@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { 
     addToCart, 
     deleteProduct,
-    setProductInfo
+    setProductInfo,
 } from '../../store/actions/products';
 
 import ProductItem from './ProductItem';
@@ -32,7 +32,11 @@ const ProductsList = props => {
         dispatch(addToCart(productId));
     };
 
-    const editHandler = (productTitle, productDescription, productImageUrl, productId) => {
+    const editHandler = (
+        productTitle, 
+        productDescription, 
+        productImageUrl, 
+        productId) => {
         // This action sends the product info to pre-fill the inputs and removes the price input
         dispatch(setProductInfo(productTitle, productDescription, productImageUrl, false, productId));
     };

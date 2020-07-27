@@ -125,9 +125,10 @@ const OrdersNavigator = ({ navigation }) => {
     );
 };
 
-const ManageProductsNavigator = ({ navigation }) => {
+const ManageProductsNavigator = ({ navigation, route }) => {
     const editProductid = useSelector(state => state.products.editProductId);
     const dispatch = useDispatch();
+
     const addHandler = () => {
         dispatch(addProduct());
     };
@@ -159,7 +160,7 @@ const ManageProductsNavigator = ({ navigation }) => {
                                 onPress={() => {
                                     addHandler();
                                     navData.navigation.navigate('Edit')
-                                }}
+                                    }}
                             />
                         </HeaderButtons>
                     ),
