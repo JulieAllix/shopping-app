@@ -89,19 +89,14 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     inputContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between', 
-        alignItems: 'center',
         width: '100%'
     },
     label: {
-        width: '35%',
         fontSize: 18,
-        fontFamily: 'noto',
+        fontFamily: 'noto-b',
         color: Colors.primaryColor
     },
     input: {
-        width: '63%', 
         borderColor: Colors.primaryColor, 
         borderBottomWidth: 1, 
         padding: 10,
