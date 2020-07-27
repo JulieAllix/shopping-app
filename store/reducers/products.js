@@ -212,8 +212,8 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case EDIT_PRODUCT:
-            const productToEditIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
-            const userProductToEditIndex = state.userProducts.findIndex(product => product.id === state.editProductId);
+            const availableProductIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
+            const userProductIndex = state.userProducts.findIndex(product => product.id === state.editProductId);
 
             const updatedProduct = {
                 id: state.editProductId,
@@ -221,18 +221,18 @@ const productsReducer = (state = initialState, action) => {
                 title: state.title,
                 imageUrl: state.imageUrl,
                 description: state.description,
-                price: state.userProducts[userProductToEditIndex].price,
+                price: state.userProducts[userProductIndex].price,
                 qty: 1,
             };
 
-            const updatedProducts = [...state.availableProducts];
-            updatedProducts.splice(productToEditIndex, 1, updatedProduct);
+            const updatedAvailableProducts = [...state.availableProducts];
+            updatedAvailableProducts[availableProductIndex] = updatedProduct;
             const updatedUserProducts = [...state.userProducts];
-            updatedUserProducts.splice(userProductToEditIndex, 1, updatedProduct);
+            updatedUserProducts[userProductIndex] = updatedProduct;
 
             return {
                 ...state,
-                availableProducts: updatedProducts,
+                availableProducts: updatedAvailableProducts,
                 userProducts: updatedUserProducts,
                 title: '',
                 price: '',
