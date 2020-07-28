@@ -2,15 +2,6 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const EMPTY_CART = 'EMPTY_CART';
 export const SET_PRODUCT_INFO = 'SET_PRODUCT_INFO';
-export const SET_TITLE = 'SET_TITLE';
-export const SET_PRICE = 'SET_PRICE';
-export const SET_DESCRIPTION = 'SET_DESCRIPTION';
-export const SET_IMAGE = 'SET_IMAGE';
-export const CREATE_OBJECT = 'CREATE_OBJECT';
-export const SET_PRICE_STATUS = 'SET_PRICE_STATUS';
-export const ADD_PRODUCT = 'ADD_PRODUCT';
-export const SET_EDIT_MODE = 'SET_EDIT_MODE';
-export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
@@ -43,67 +34,6 @@ export const setProductInfo = (title, description, imageUrl, bool, productId) =>
         imageUrl,
         status: bool,
         productId
-    };
-};
-
-export const setTitle = (value) => {
-    return { 
-        type: SET_TITLE, 
-        value: value,
-    };
-};
-
-export const setPrice = (value) => {
-    return { 
-        type: SET_PRICE, 
-        value: value,
-    };
-};
-
-export const setDescription = (value) => {
-    return { 
-        type: SET_DESCRIPTION, 
-        value: value,
-    };
-};
-
-export const setImageUrl = (value) => {
-    return { 
-        type: SET_IMAGE, 
-        value: value,
-    };
-};
-
-export const createNewObject = () => {
-    return { 
-        type: CREATE_OBJECT, 
-    };
-};
-
-export const setPriceStatus = (bool) => {
-    return { 
-        type: SET_PRICE_STATUS, 
-        status: bool,
-    };
-};
-
-export const addProduct = () => {
-    return { 
-        type: ADD_PRODUCT, 
-    };
-};
-
-export const setEditMode = (id) => {
-    return { 
-        type: SET_EDIT_MODE, 
-        productId: id,
-    };
-};
-
-export const editProduct = (id) => {
-    return { 
-        type: EDIT_PRODUCT, 
-        productId: id,
     };
 };
 

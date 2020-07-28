@@ -129,10 +129,6 @@ const ManageProductsNavigator = ({ navigation, route }) => {
     const editProductid = useSelector(state => state.products.editProductId);
     const dispatch = useDispatch();
 
-    const addHandler = () => {
-        dispatch(addProduct());
-    };
-
     return (
         <Stack.Navigator
             initialRouteName="UserProductsOverview"
@@ -151,7 +147,6 @@ const ManageProductsNavigator = ({ navigation, route }) => {
                                 title="Add" 
                                 iconName="ios-add-circle"
                                 onPress={() => {
-                                    addHandler();
                                     navData.navigation.navigate('Edit')
                                     }}
                             />

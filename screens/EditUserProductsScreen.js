@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
     View,
@@ -103,7 +103,7 @@ const EditUserProductsScreen = props => {
             value: text,
             isValid: isValid,
             input: inputIdentifier
-          });
+        });
     }
 
     return ( 
@@ -127,7 +127,6 @@ const EditUserProductsScreen = props => {
                 <View style={styles.inputContainer}>
                     <Text style={styles.label}>Price</Text>
                     <TextInput 
-                        name="price"
                         style={styles.input} 
                         onChangeText={textChangeHandler.bind(this, 'price')}
                         value={formState.inputValues.price}
@@ -138,7 +137,6 @@ const EditUserProductsScreen = props => {
                 <View style={styles.inputContainer}>
                     <Text style={styles.label}>Description</Text>
                     <TextInput 
-                        name="description"
                         style={styles.input} 
                         onChangeText={textChangeHandler.bind(this, 'description')}
                         value={formState.inputValues.description}
@@ -147,7 +145,6 @@ const EditUserProductsScreen = props => {
                 <View style={styles.inputContainer}>
                     <Text style={styles.label}>Image url</Text>
                     <TextInput 
-                        name="imageUrl"
                         style={styles.input} 
                         onChangeText={textChangeHandler.bind(this, 'imageUrl')}
                         value={formState.inputValues.imageUrl}

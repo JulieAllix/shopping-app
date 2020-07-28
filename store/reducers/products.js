@@ -4,15 +4,6 @@ import {
     REMOVE_FROM_CART, 
     EMPTY_CART,
     SET_PRODUCT_INFO,
-    SET_TITLE,
-    SET_PRICE,
-    SET_DESCRIPTION,
-    SET_IMAGE,
-    CREATE_OBJECT,
-    SET_PRICE_STATUS,
-    ADD_PRODUCT,
-    SET_EDIT_MODE,
-    EDIT_PRODUCT,
     DELETE_PRODUCT,
     CREATE_PRODUCT,
     UPDATE_PRODUCT
@@ -24,13 +15,7 @@ const initialState = {
     productsInCart: [],
     qtiesInCart: [],
     totalPrice: 0,
-    title: '',
-    price: '',
-    description: '',
-    imageUrl: '',
     latestId: '6',
-    priceStatus: true,
-    editMode: false,
     editProductId: '',
 };
 
@@ -138,110 +123,9 @@ const productsReducer = (state = initialState, action) => {
                 title: action.title,
                 description: action.description,
                 imageUrl: action.imageUrl,
-                priceStatus: action.status,
-                editMode: true,
                 editProductId: action.productId,
             };
- 
-        case SET_TITLE:
-            return {
-                ...state,
-                title: action.value,
-            };
 
-        case SET_PRICE:
-            return {
-                ...state,
-                price: action.value,
-            };
-
-        case SET_DESCRIPTION:
-            return {
-                ...state,
-                description: action.value,
-            };
-
-        case SET_IMAGE:
-            return {
-                ...state,
-                imageUrl: action.value,
-            };
-
-        case CREATE_OBJECT:
-            const newObject = {
-                id: 'p' + state.latestId + 1,
-                ownerId: 'u1',
-                title: state.title,
-                imageUrl: state.imageUrl,
-                description: state.description,
-                price: parseInt(state.price),
-                qty: 1,
-            };
-
-            return {
-                ...state,
-                availableProducts: state.availableProducts.concat(newObject),
-                userProducts: state.userProducts.concat(newObject),
-                title: '',
-                price: '',
-                description: '',
-                imageUrl: '',
-                latestId: state.latestId + 1
-            };
-
-        case SET_PRICE_STATUS:
-            return {
-                ...state,
-                priceStatus: action.status
-            };
-
-        case ADD_PRODUCT:
-            return {
-                ...state,
-                title: '',
-                description: '',
-                imageUrl: '',
-                priceStatus: true,
-                editMode: false,
-                editProductId: '',
-            };
-
-        case SET_EDIT_MODE:
-            return {
-                ...state,
-                editMode: true,
-                editProductId: action.productId,
-            };
-/*
-        case EDIT_PRODUCT:
-            const availableProductIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
-            const userProductIndex = state.userProducts.findIndex(product => product.id === state.editProductId);
-
-            const updatedProduct = {
-                id: state.editProductId,
-                ownerId: 'u1',
-                title: state.title,
-                imageUrl: state.imageUrl,
-                description: state.description,
-                price: state.userProducts[userProductIndex].price,
-                qty: 1,
-            };
-
-            const updatedAvailableProducts = [...state.availableProducts];
-            updatedAvailableProducts[availableProductIndex] = updatedProduct;
-            const updatedUserProducts = [...state.userProducts];
-            updatedUserProducts[userProductIndex] = updatedProduct;
-
-            return {
-                ...state,
-                availableProducts: updatedAvailableProducts,
-                userProducts: updatedUserProducts,
-                title: '',
-                price: '',
-                description: '',
-                imageUrl: '',
-            };
-*/
         case DELETE_PRODUCT:
             if (!state.productsInCart.find(product => product.id === action.productId)) {
                 return {
@@ -271,6 +155,7 @@ const productsReducer = (state = initialState, action) => {
                     totalPrice: state.totalPrice - itemTotalPrice
                 };
             };
+            
         case CREATE_PRODUCT:
         const newProduct = {
             id: 'p' + state.latestId + 1,
@@ -285,7 +170,8 @@ const productsReducer = (state = initialState, action) => {
         return {
             ...state,
             availableProducts: state.availableProducts.concat(newProduct),
-            userProducts: state.userProducts.concat(newProduct)
+            userProducts: state.userProducts.concat(newProduct),
+            
         };
 
         case UPDATE_PRODUCT:
