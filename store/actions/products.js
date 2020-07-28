@@ -12,6 +12,8 @@ export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const SET_EDIT_MODE = 'SET_EDIT_MODE';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 
 export const addToCart = (id) => {
     return { 
@@ -112,5 +114,27 @@ export const deleteProduct = (id) => {
     };
 };
 
+export const createProduct = (title, description, imageUrl, price) => {
+    return {
+      type: CREATE_PRODUCT,
+      productData: {
+        title,
+        description,
+        imageUrl,
+        price
+      }
+    };
+  };
 
+export const updateProduct = (id, title, description, imageUrl) => {
+    return {
+      type: UPDATE_PRODUCT,
+      pid: id,
+      productData: {
+        title,
+        description,
+        imageUrl,
+      }
+    };
+  };
 

@@ -14,6 +14,8 @@ import {
     SET_EDIT_MODE,
     EDIT_PRODUCT,
     DELETE_PRODUCT,
+    CREATE_PRODUCT,
+    UPDATE_PRODUCT
 } from '../actions/products';
 
 const initialState = {
@@ -210,7 +212,7 @@ const productsReducer = (state = initialState, action) => {
                 editMode: true,
                 editProductId: action.productId,
             };
-
+/*
         case EDIT_PRODUCT:
             const availableProductIndex = state.availableProducts.findIndex(product => product.id === state.editProductId);
             const userProductIndex = state.userProducts.findIndex(product => product.id === state.editProductId);
@@ -239,7 +241,7 @@ const productsReducer = (state = initialState, action) => {
                 description: '',
                 imageUrl: '',
             };
-
+*/
         case DELETE_PRODUCT:
             if (!state.productsInCart.find(product => product.id === action.productId)) {
                 return {
@@ -269,7 +271,52 @@ const productsReducer = (state = initialState, action) => {
                     totalPrice: state.totalPrice - itemTotalPrice
                 };
             };
-        
+        case CREATE_PRODUCT:
+        const newProduct = {
+            id: 'p' + state.latestId + 1,
+            ownerId: 'u1',
+            title: action.productData.title,
+            imageUrl: action.productData.imageUrl,
+            description: action.productData.description,
+            price: action.productData.price,
+            qty: 1,
+        };
+
+        return {
+            ...state,
+            availableProducts: state.availableProducts.concat(newProduct),
+            userProducts: state.userProducts.concat(newProduct)
+        };
+
+        case UPDATE_PRODUCT:
+
+        const productIndex = state.userProducts.findIndex(
+            prod => prod.id === action.pid
+        );
+
+        const updatedProduct = {
+            id: state.editProductId,
+            ownerId: 'u1',
+            title: action.productData.title,
+            imageUrl: action.productData.imageUrl,
+            description: action.productData.description,
+            price: state.userProducts[productIndex].price,
+            qty: 1,
+        };
+
+        const updatedUserProducts = [...state.userProducts];
+        updatedUserProducts[productIndex] = updatedProduct;
+        const availableProductIndex = state.availableProducts.findIndex(
+        prod => prod.id === action.pid
+        );
+        const updatedAvailableProducts = [...state.availableProducts];
+        updatedAvailableProducts[availableProductIndex] = updatedProduct;
+        return {
+            ...state,
+            availableProducts: updatedAvailableProducts,
+            userProducts: updatedUserProducts
+        };
+
         default:
             return state;
     }

@@ -132,13 +132,6 @@ const ManageProductsNavigator = ({ navigation, route }) => {
     const addHandler = () => {
         dispatch(addProduct());
     };
-    const handleInputValidation = () => {
-        if (editProductid === '') {
-            dispatch(createNewObject());
-        } else {
-            dispatch(editProduct(editProductid));
-        }
-    };
 
     return (
         <Stack.Navigator
@@ -184,20 +177,6 @@ const ManageProductsNavigator = ({ navigation, route }) => {
                 component={EditUserProductsScreen}
                 options={(navData, route) => ({ 
                     title: editProductid ? 'Edit Products' : 'Add Product',
-                    headerRight: () => (
-                        <HeaderButtons
-                        HeaderButtonComponent={HeaderButton}
-                        >
-                            <Item 
-                                title="Check" 
-                                iconName="ios-checkmark-circle"
-                                onPress={() => {
-                                    handleInputValidation();
-                                    navData.navigation.navigate('UserProductsOverview');
-                                }}
-                            />
-                        </HeaderButtons>
-                    ),
                 })}
             />
         </Stack.Navigator>
