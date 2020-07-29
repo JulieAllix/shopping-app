@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
     View,
@@ -91,42 +91,45 @@ const EditUserProductsScreen = props => {
         props.navigation.goBack();
       };
 
-    const textChangeHandler = (inputIdentifier, text) => {
-        let isValid = false;
-        if (text.trim().length > 0) {
-            isValid = true;
-        };
-        if (inputIdentifier === 'price') {
-            text = text.replace(',', '.');
-        };
+    const inputChangeHandler = useCallback((inputIdentifier, inputValue, inputValidity) => {
         dispatchFormState({
             type: FORM_INPUT_UPDATE,
-            value: text,
-            isValid: isValid,
+            value: inputValue,
+            isValid: inputValidity,
             input: inputIdentifier
         });
-    }
+    }, [dispatchFormState]);
 
     return ( 
         <ScrollView>
             <View style={styles.inputsContainer}>
                 <Input 
+                  id='title'
                   label='Title'
                   errorText='Please enter a valid title !'
                   keyboardType='default'
                   autoCapitalize='sentences'
                   autoCorrect
                   returnKeyType='next'
+                  onInputChange={inputChangeHandler}
+                  initialValue={editedProduct ? editedProduct.title : ''}
+                  initiallyValid={!!editedProduct}
+                  required
                 />
                 {editedProduct ? null : (
                   <Input 
+                    id='price'
                     label='Price'
                     errorText='Please enter a valid price !'
                     keyboardType='decimal-pad'
                     returnKeyType='next'
+                    onInputChange={inputChangeHandler}
+                    required
+                    min={0.01}
                   />
                 )}
                 <Input 
+                  id='description'
                   label='Description'
                   errorText='Please enter a valid description !'
                   keyboardType='default'
@@ -134,12 +137,22 @@ const EditUserProductsScreen = props => {
                   autoCorrect
                   multiline
                   numberOfLines={3}
+                  onInputChange={inputChangeHandler}
+                  initialValue={editedProduct ? editedProduct.description : ''}
+                  initiallyValid={!!editedProduct}
+                  required
+                  minLength={5}
                 />
                 <Input 
+                  id='imageUrl'
                   label='Image url'
                   errorText='Please enter a valid image url !'
                   keyboardType='default'
                   returnKeyType='next'
+                  onInputChange={inputChangeHandler}
+                  initialValue={editedProduct ? editedProduct.imageUrl : ''}
+                  initiallyValid={!!editedProduct}
+                  required
                 />
             </View>
             <View style={styles.buttonContainer}>
