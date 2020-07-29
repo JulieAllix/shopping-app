@@ -12,6 +12,7 @@ import { updateProduct, createProduct } from '../store/actions/products';
 
 import Colors from '../constants/Colors';
 import MyButton from '../components/MyButton';
+import Input from '../components/Input';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -109,47 +110,37 @@ const EditUserProductsScreen = props => {
     return ( 
         <ScrollView>
             <View style={styles.inputsContainer}>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Title</Text>
-                    <TextInput 
-                        name="title"
-                        style={styles.input} 
-                        onChangeText={textChangeHandler.bind(this, 'title')}
-                        value={formState.inputValues.title}
-                        keyboardType='default'
-                        autoCapitalize='sentences'
-                        autoCorrect
-                        returnKeyType='next'
-                    />
-                    {!formState.inputValidities.title && <Text>Please enter a valid title!</Text>}
-                </View>
+                <Input 
+                  label='Title'
+                  errorText='Please enter a valid title !'
+                  keyboardType='default'
+                  autoCapitalize='sentences'
+                  autoCorrect
+                  returnKeyType='next'
+                />
                 {editedProduct ? null : (
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Price</Text>
-                    <TextInput 
-                        style={styles.input} 
-                        onChangeText={textChangeHandler.bind(this, 'price')}
-                        value={formState.inputValues.price}
-                        keyboardType='decimal-pad'
-                    />
-                </View>
+                  <Input 
+                    label='Price'
+                    errorText='Please enter a valid price !'
+                    keyboardType='decimal-pad'
+                    returnKeyType='next'
+                  />
                 )}
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Description</Text>
-                    <TextInput 
-                        style={styles.input} 
-                        onChangeText={textChangeHandler.bind(this, 'description')}
-                        value={formState.inputValues.description}
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.label}>Image url</Text>
-                    <TextInput 
-                        style={styles.input} 
-                        onChangeText={textChangeHandler.bind(this, 'imageUrl')}
-                        value={formState.inputValues.imageUrl}
-                    />
-                </View>
+                <Input 
+                  label='Description'
+                  errorText='Please enter a valid description !'
+                  keyboardType='default'
+                  autoCapitalize='sentences'
+                  autoCorrect
+                  multiline
+                  numberOfLines={3}
+                />
+                <Input 
+                  label='Image url'
+                  errorText='Please enter a valid image url !'
+                  keyboardType='default'
+                  returnKeyType='next'
+                />
             </View>
             <View style={styles.buttonContainer}>
                 <MyButton onPress={submitHandler}>Validate</MyButton>
@@ -165,20 +156,7 @@ const styles = StyleSheet.create({
         padding: 15,
         marginTop: 15
     },
-    inputContainer: {
-        width: '100%'
-    },
-    label: {
-        fontSize: 18,
-        fontFamily: 'noto-b',
-        color: Colors.primaryColor
-    },
-    input: {
-        borderColor: Colors.primaryColor, 
-        borderBottomWidth: 1, 
-        padding: 10,
-        marginVertical: 20,
-    },
+
     buttonContainer: {
         alignItems: 'center',
     }
