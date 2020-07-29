@@ -2,11 +2,10 @@ import React, { useReducer, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
     View,
-    Text,
     StyleSheet,
-    TextInput,
     ScrollView,
     Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import { updateProduct, createProduct } from '../store/actions/products';
 
@@ -101,6 +100,11 @@ const EditUserProductsScreen = props => {
     }, [dispatchFormState]);
 
     return ( 
+      <KeyboardAvoidingView 
+        style= {{ flex: 1 }} 
+        behavior="padding" 
+        keyboardVerticalOffset={70}
+      >
         <ScrollView>
             <View style={styles.inputsContainer}>
                 <Input 
@@ -159,6 +163,7 @@ const EditUserProductsScreen = props => {
                 <MyButton onPress={submitHandler}>Validate</MyButton>
             </View>
         </ScrollView>
+      </KeyboardAvoidingView>
     );
 };
 
