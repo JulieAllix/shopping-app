@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
     View, 
     FlatList, 
@@ -7,11 +7,7 @@ import {
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { 
-    addToCart, 
-    deleteProduct,
-    setProductInfo,
-} from '../../store/actions/products';
+import * as productActions from '../../store/actions/products';
 
 import ProductItem from './ProductItem';
 
@@ -20,6 +16,10 @@ const ProductsList = props => {
     let orientation = useSelector(state => state.screen.orientation);
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(productActions.fetchProducts());
+    }, [dispatch]);
 
     let numColumns;
 
@@ -30,7 +30,7 @@ const ProductsList = props => {
     };
 
     const addToCartHandler = (productId) => {
-        dispatch(addToCart(productId));
+        dispatch(productActions.addToCart(productId));
     };
 
     const editHandler = (
@@ -39,7 +39,7 @@ const ProductsList = props => {
         productImageUrl, 
         productId) => {
         // This action sends the product info to pre-fill the inputs and removes the price input
-        dispatch(setProductInfo(productTitle, productDescription, productImageUrl, false, productId));
+        dispatch(productActions.setProductInfo(productTitle, productDescription, productImageUrl, false, productId));
     };
 /*
     const deleteHandler = (productId) => {
@@ -56,7 +56,7 @@ const ProductsList = props => {
                     text: 'Yes', 
                     style: 'destructive', 
                     onPress: () => {
-                    dispatch(deleteProduct(productId));
+                    dispatch(productActions.deleteProduct(productId));
                     }
                 }
             ]);

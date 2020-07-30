@@ -6,7 +6,8 @@ import {
     SET_PRODUCT_INFO,
     DELETE_PRODUCT,
     CREATE_PRODUCT,
-    UPDATE_PRODUCT
+    UPDATE_PRODUCT,
+    SET_PRODUCTS,
 } from '../actions/products';
 
 const initialState = {
@@ -25,6 +26,12 @@ const productsReducer = (state = initialState, action) => {
     const formerTotalPrice = (Math.round((parseFloat(state.totalPrice))*100))/100;
 
     switch (action.type) {
+        case SET_PRODUCTS:
+            return {
+                availableProducts: action.products,
+                userProducts: action.products.filter(prod => prod.ownerId === 'u1'),
+            };
+
         case ADD_TO_CART:
             const productToAdd = state.availableProducts.find(product => product.id === action.productId);
             const productPrice = productToAdd.price;
@@ -158,7 +165,7 @@ const productsReducer = (state = initialState, action) => {
             
         case CREATE_PRODUCT:
         const newProduct = {
-            id: 'p' + state.latestId + 1,
+            id: action.productData.id,
             ownerId: 'u1',
             title: action.productData.title,
             imageUrl: action.productData.imageUrl,
