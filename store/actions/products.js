@@ -77,6 +77,12 @@ export const setProductInfo = (title, description, imageUrl, bool, productId) =>
 };
 
 export const deleteProduct = (id) => {
+  return async dispatch => {
+    await fetch(`https://shopping-app-a7aea.firebaseio.com/products/${id}.json`, {
+        method: 'DELETE',
+      });
+    dispatch({ type: DELETE_PRODUCT, productId: id });
+  };
     return { 
         type: DELETE_PRODUCT, 
         productId: id,
