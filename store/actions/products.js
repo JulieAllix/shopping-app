@@ -28,9 +28,9 @@ export const fetchProducts = () => {
         1,
         )
       );
-    }
-    console.log(resData);
-    dispatch({type: SET_PRODUCTS, products: loadedProducts })
+    };
+
+    dispatch({type: SET_PRODUCTS, products: loadedProducts });
   };
 };
 
@@ -101,6 +101,7 @@ export const createProduct = (title, description, imageUrl, price) => {
         }
       });
     };
+    
     return {
       type: CREATE_PRODUCT,
       productData: {

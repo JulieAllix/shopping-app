@@ -1,24 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     View, 
     FlatList, 
     StyleSheet,
     Alert,
+    ActivityIndicator,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as productActions from '../../store/actions/products';
 
+import Colors from '../../constants/Colors';
 import ProductItem from './ProductItem';
+import DefaultText from '../DefaultText';
 
 const ProductsList = props => {
-
+    const [isLoading, setIsLoading] = useState(false);
     let orientation = useSelector(state => state.screen.orientation);
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(productActions.fetchProducts());
+        const loadProducts = async () => {
+            setIsLoading(true);
+            await dispatch(productActions.fetchProducts());
+            setIsLoading(false);
+        };
+        loadProducts();
     }, [dispatch]);
 
     let numColumns;
@@ -41,11 +49,7 @@ const ProductsList = props => {
         // This action sends the product info to pre-fill the inputs and removes the price input
         dispatch(productActions.setProductInfo(productTitle, productDescription, productImageUrl, false, productId));
     };
-/*
-    const deleteHandler = (productId) => {
-        dispatch(deleteProduct(productId));
-    };
-*/
+
     const deleteHandler = (productId) => {
         Alert.alert(
             'Are you sure ?',
@@ -116,6 +120,27 @@ const ProductsList = props => {
             />
         );
     };
+
+    if (isLoading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator 
+                    size='large' 
+                    color={Colors.primaryColor}
+                />
+            </View>
+        )
+    }
+
+    if (!isLoading && props.listData.length === 0) {
+        return (
+            <View style={styles.centered}>
+                <DefaultText>No products found.</DefaultText>
+                <DefaultText>Maybe start adding some !</DefaultText>
+            </View>
+        );
+    }
+
     return (
         <View style={styles.list}>
             <FlatList 
@@ -138,6 +163,11 @@ const ProductsList = props => {
 const styles = StyleSheet.create({
     list: {
         padding: 10,
+    },
+    centered: {
+        flex: 1, 
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 

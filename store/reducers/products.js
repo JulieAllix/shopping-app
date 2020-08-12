@@ -11,7 +11,7 @@ import {
 } from '../actions/products';
 
 const initialState = {
-    availableProducts: PRODUCTS,
+    availableProducts: [],
     userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1'),
     productsInCart: [],
     qtiesInCart: [],
