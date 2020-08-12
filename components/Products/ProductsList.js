@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
     View, 
     FlatList, 
@@ -11,23 +11,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as productActions from '../../store/actions/products';
 
 import Colors from '../../constants/Colors';
+import MyButton from '../MyButton';
 import ProductItem from './ProductItem';
 import DefaultText from '../DefaultText';
 
 const ProductsList = props => {
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
     let orientation = useSelector(state => state.screen.orientation);
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const loadProducts = async () => {
-            setIsLoading(true);
+    const loadProducts = useCallback(async () => {
+        setError(null);
+        setIsLoading(true);
+        try {
             await dispatch(productActions.fetchProducts());
-            setIsLoading(false);
-        };
+        } catch (err) {
+            setError(err.message);
+        }
+        setIsLoading(false);
+    }, [dispatch, setIsLoading, setError]);
+
+    useEffect(() => {
         loadProducts();
-    }, [dispatch]);
+    }, [dispatch, loadProducts]);
 
     let numColumns;
 
@@ -120,6 +128,15 @@ const ProductsList = props => {
             />
         );
     };
+
+    if (error) {
+        return (
+            <View style={styles.centered}>
+                <DefaultText>An error occurred !</DefaultText>
+                <MyButton onPress={loadProducts}>Try again !</MyButton>
+            </View>
+        );
+    }
 
     if (isLoading) {
         return (
