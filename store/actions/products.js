@@ -16,6 +16,7 @@ export const fetchProducts = () => {
       const response = await fetch('https://shopping-app-a7aea.firebaseio.com/products.json');
 
       if (!response.ok) {
+        console.log('!response.ok');
         throw new Error('Something went wrong!');
       }
 
@@ -38,6 +39,7 @@ export const fetchProducts = () => {
       dispatch({type: SET_PRODUCTS, products: loadedProducts });
     } catch (err) {
       // send to custom analytics server
+      console.log('cc lerreur !')
       throw err;
     }
   };

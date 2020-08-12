@@ -1,27 +1,31 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
+//import React, {useState, useEffect, useCallback } from 'react';
 import { 
     View, 
     FlatList, 
     StyleSheet,
     Alert,
-    ActivityIndicator,
+    //ActivityIndicator,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as productActions from '../../store/actions/products';
 
-import Colors from '../../constants/Colors';
-import MyButton from '../MyButton';
+//import Colors from '../../constants/Colors';
+//import MyButton from '../MyButton';
 import ProductItem from './ProductItem';
-import DefaultText from '../DefaultText';
+//import DefaultText from '../DefaultText';
 
 const ProductsList = props => {
+    /*
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
+    */
     let orientation = useSelector(state => state.screen.orientation);
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
 
+    /*
     const loadProducts = useCallback(async () => {
         setError(null);
         setIsLoading(true);
@@ -29,6 +33,7 @@ const ProductsList = props => {
             await dispatch(productActions.fetchProducts());
         } catch (err) {
             setError(err.message);
+            console.log('je suis dans catch err')
         }
         setIsLoading(false);
     }, [dispatch, setIsLoading, setError]);
@@ -36,6 +41,7 @@ const ProductsList = props => {
     useEffect(() => {
         loadProducts();
     }, [dispatch, loadProducts]);
+*/
 
     let numColumns;
 
@@ -128,7 +134,7 @@ const ProductsList = props => {
             />
         );
     };
-
+/*
     if (error) {
         return (
             <View style={styles.centered}>
@@ -157,6 +163,7 @@ const ProductsList = props => {
             </View>
         );
     }
+*/
 
     return (
         <View style={styles.list}>
@@ -181,11 +188,13 @@ const styles = StyleSheet.create({
     list: {
         padding: 10,
     },
+    /*
     centered: {
         flex: 1, 
         justifyContent: 'center',
         alignItems: 'center'
     }
+    */
 });
 
 export default ProductsList;

@@ -11,7 +11,7 @@ import {
 } from '../actions/products';
 
 const initialState = {
-    availableProducts: [],
+    availableProducts: PRODUCTS,
     userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1'),
     productsInCart: [],
     qtiesInCart: [],
@@ -178,7 +178,6 @@ const productsReducer = (state = initialState, action) => {
             ...state,
             availableProducts: state.availableProducts.concat(newProduct),
             userProducts: state.userProducts.concat(newProduct),
-            
         };
 
         case UPDATE_PRODUCT:
