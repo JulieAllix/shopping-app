@@ -22,7 +22,7 @@ const initialState = {
 
 const productsReducer = (state = initialState, action) => {
     
-    const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
+    //const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
     const formerTotalPrice = (Math.round((parseFloat(state.totalPrice))*100))/100;
 
     switch (action.type) {
@@ -33,6 +33,7 @@ const productsReducer = (state = initialState, action) => {
             };
 
         case ADD_TO_CART:
+            const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
             const productToAdd = state.availableProducts.find(product => product.id === action.productId);
             const productPrice = productToAdd.price;
             
@@ -80,6 +81,7 @@ const productsReducer = (state = initialState, action) => {
             }
 
         case REMOVE_FROM_CART:
+            const index = state.productsInCart.findIndex(product => product.id === action.productId);
             const productToRemove = state.productsInCart.find(product => product.id === action.productId);
 
             const formerQty = productToRemove.qty;
@@ -91,7 +93,7 @@ const productsReducer = (state = initialState, action) => {
             if (formerQty === 1) {
 
                 const updatedCartItems = [...state.productsInCart];
-                updatedCartItems.splice(existingIndex, 1);
+                updatedCartItems.splice(index, 1);
     
                 return { 
                     ...state, 
@@ -112,7 +114,7 @@ const productsReducer = (state = initialState, action) => {
                 };
 
                 const updatedProductInCart = [...state.productsInCart];
-                updatedProductInCart.splice(existingIndex, 1, updatedProduct);
+                updatedProductInCart.splice(index, 1, updatedProduct);
 
                 return { 
                     ...state, 
@@ -183,7 +185,7 @@ const productsReducer = (state = initialState, action) => {
         case UPDATE_PRODUCT:
 
         const productIndex = state.userProducts.findIndex(
-            prod => prod.id === action.pid
+            prod => prod.id === action.productId
         );
 
         const updatedProduct = {
@@ -199,7 +201,7 @@ const productsReducer = (state = initialState, action) => {
         const updatedUserProducts = [...state.userProducts];
         updatedUserProducts[productIndex] = updatedProduct;
         const availableProductIndex = state.availableProducts.findIndex(
-        prod => prod.id === action.pid
+        prod => prod.id === action.productId
         );
         const updatedAvailableProducts = [...state.availableProducts];
         updatedAvailableProducts[availableProductIndex] = updatedProduct;

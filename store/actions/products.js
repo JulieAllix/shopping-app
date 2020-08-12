@@ -35,11 +35,11 @@ export const fetchProducts = () => {
           )
         );
       };
-  
+      console.log('cc ça marche !');
       dispatch({type: SET_PRODUCTS, products: loadedProducts });
     } catch (err) {
       // send to custom analytics server
-      console.log('cc lerreur !')
+      console.log('cc lerreur !');
       throw err;
     }
   };
@@ -125,14 +125,29 @@ export const createProduct = (title, description, imageUrl, price) => {
   };
 
 export const updateProduct = (id, title, description, imageUrl) => {
-    return {
+  return async dispatch => {
+
+    await fetch(`https://shopping-app-a7aea.firebaseio.com/products/${id}.json`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title, 
+          description, 
+          imageUrl,
+        })
+      });
+
+    dispatch({
       type: UPDATE_PRODUCT,
-      pid: id,
+      productId: id,
       productData: {
         title,
         description,
         imageUrl,
       }
-    };
+    });
   };
+};
 

@@ -14,16 +14,19 @@ import DefaultText from '../components/DefaultText';
 import MyButton from '../components/MyButton';
 import ProductsList from '../components/Products/ProductsList';
 
-const ProductsOverviewScreen = ({ navigation }) => {
+//const ProductsOverviewScreen = ({ navigation }) => {
+const ProductsOverviewScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
+    //const [isRefreshing, setIsRefreshing] = useState(false);
     const [error, setError] = useState();
+    const availableProducts = useSelector(state => state.products.availableProducts);
     const dispatch = useDispatch();
 
-    const availableProducts = useSelector(state => state.products.availableProducts);
-
     const loadProducts = useCallback(async () => {
+        console.log('LOAD PROD');
         setError(null);
         setIsLoading(true);
+        //setIsRefreshing(true);
         try {
             await dispatch(productActions.fetchProducts());
         } catch (err) {
@@ -31,11 +34,24 @@ const ProductsOverviewScreen = ({ navigation }) => {
             console.log('je suis dans catch err')
         }
         setIsLoading(false);
+        //setIsRefreshing(false);
     }, [dispatch, setIsLoading, setError]);
 
+
     useEffect(() => {
-        loadProducts();
-    }, [dispatch, loadProducts]);
+        const unsubscribe = props.navigation.addListener('focus', loadProducts);
+    
+        return () => {
+          unsubscribe();
+        };
+      }, [loadProducts]);
+
+      useEffect(() => {
+        setIsLoading(true);
+        loadProducts().then(() => {
+          setIsLoading(false);
+        });
+      }, [dispatch, loadProducts]);
 
     if (error) {
         return (
@@ -69,8 +85,12 @@ const ProductsOverviewScreen = ({ navigation }) => {
     return ( 
         <ProductsList  
             listData={availableProducts}
-            navigation={navigation} 
+            navigation={props.navigation} 
             screen="Products"
+            /*
+            loadProducts={loadProducts}
+            isRefreshing={isRefreshing}
+            */
         />
     );
 };

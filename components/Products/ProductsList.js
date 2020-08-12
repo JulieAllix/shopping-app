@@ -1,47 +1,21 @@
-import React from 'react';
-//import React, {useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { 
     View, 
     FlatList, 
     StyleSheet,
     Alert,
-    //ActivityIndicator,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as productActions from '../../store/actions/products';
 
-//import Colors from '../../constants/Colors';
-//import MyButton from '../MyButton';
 import ProductItem from './ProductItem';
-//import DefaultText from '../DefaultText';
 
 const ProductsList = props => {
-    /*
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
-    */
+
     let orientation = useSelector(state => state.screen.orientation);
     let cartItems = useSelector(state => state.products.productsInCart);
     const dispatch = useDispatch();
-
-    /*
-    const loadProducts = useCallback(async () => {
-        setError(null);
-        setIsLoading(true);
-        try {
-            await dispatch(productActions.fetchProducts());
-        } catch (err) {
-            setError(err.message);
-            console.log('je suis dans catch err')
-        }
-        setIsLoading(false);
-    }, [dispatch, setIsLoading, setError]);
-
-    useEffect(() => {
-        loadProducts();
-    }, [dispatch, loadProducts]);
-*/
 
     let numColumns;
 
@@ -134,40 +108,14 @@ const ProductsList = props => {
             />
         );
     };
-/*
-    if (error) {
-        return (
-            <View style={styles.centered}>
-                <DefaultText>An error occurred !</DefaultText>
-                <MyButton onPress={loadProducts}>Try again !</MyButton>
-            </View>
-        );
-    }
-
-    if (isLoading) {
-        return (
-            <View style={styles.centered}>
-                <ActivityIndicator 
-                    size='large' 
-                    color={Colors.primaryColor}
-                />
-            </View>
-        )
-    }
-
-    if (!isLoading && props.listData.length === 0) {
-        return (
-            <View style={styles.centered}>
-                <DefaultText>No products found.</DefaultText>
-                <DefaultText>Maybe start adding some !</DefaultText>
-            </View>
-        );
-    }
-*/
 
     return (
         <View style={styles.list}>
             <FlatList 
+            /*
+                onRefresh={props.loadProducts}
+                refreshing={props.isRefreshing}
+                */
                 key={numColumns}
                 data={props.listData}
                 keyExtractor={(item, index) => item.id}
@@ -188,13 +136,6 @@ const styles = StyleSheet.create({
     list: {
         padding: 10,
     },
-    /*
-    centered: {
-        flex: 1, 
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-    */
 });
 
 export default ProductsList;
