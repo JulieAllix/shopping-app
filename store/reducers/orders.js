@@ -14,10 +14,10 @@ const ordersReducer = (state = initialState, action) => {
 
         case CREATE_ORDER:
             const newOrder = new Order(
-                state.lastId + 1,
+                action.id,
                 action.cartItems,
                 action.totalPrice,
-                new Date()
+                action.date
               );
               return {
                 ...state,

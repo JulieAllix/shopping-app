@@ -11,7 +11,7 @@ import {
 } from '../actions/products';
 
 const initialState = {
-    availableProducts: PRODUCTS,
+    availableProducts: [],
     userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1'),
     productsInCart: [],
     qtiesInCart: [],
@@ -20,14 +20,15 @@ const initialState = {
     editProductId: '',
 };
 
-const productsReducer = (state = initialState, action) => {
-    
+//const productsReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
     //const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
     const formerTotalPrice = (Math.round((parseFloat(state.totalPrice))*100))/100;
 
     switch (action.type) {
         case SET_PRODUCTS:
             return {
+                ...state,
                 availableProducts: action.products,
                 userProducts: action.products.filter(prod => prod.ownerId === 'u1'),
             };
@@ -36,7 +37,6 @@ const productsReducer = (state = initialState, action) => {
             const existingIndex = state.productsInCart.findIndex(product => product.id === action.productId);
             const productToAdd = state.availableProducts.find(product => product.id === action.productId);
             const productPrice = productToAdd.price;
-            
             const newTotalPrice = formerTotalPrice + productPrice;
             
             /*
@@ -191,10 +191,12 @@ const productsReducer = (state = initialState, action) => {
             availableProducts: updatedAvailableProducts,
             userProducts: updatedUserProducts
         };
-
+/*
         default:
             return state;
-    }
-}
+            */
+    };
+    return state;
+};
 
-export default productsReducer;
+//export default productsReducer;
